@@ -13,6 +13,7 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
+      flash[:notice] = "Please complete all fields."
       render :new
     end
   end
