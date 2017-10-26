@@ -6,4 +6,7 @@ class Recipe < ApplicationRecord
   has_many :ratings
 
   validates :name, :description, presence: true
+
+  accepts_nested_attributes_for :ingredients
+  
 end

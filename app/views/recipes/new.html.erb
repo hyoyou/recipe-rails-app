@@ -7,5 +7,11 @@
   <%= f.label :description %>
   <%= f.text_area :description, size: "30x10" %><br>
 
+  <%= f.fields_for :ingredients do |ingredient| %>
+      <%= ingredient.label "Ingredient Name" %>
+      <%= ingredient.text_field :name %><br>
+  <% end %>
+  <%#= link_to 'add ingredient', @recipe %>
+
   <%= f.submit %>
 <% end %>
