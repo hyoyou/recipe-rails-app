@@ -12,13 +12,18 @@ class RecipesController < ApplicationController
   end
 
   def create
+    #raise params.inspect
     @recipe = Recipe.new(recipe_params)
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
-      flash[:notice] = "Please complete all fields."
+      #flash[:notice] = "Please complete all fields."
       render :new
     end
+  end
+
+  def show
+    @recipe = Recipe.find(params[:id])
   end
 
   private
