@@ -21,6 +21,9 @@ Currently logged in as: <%= current_user.email %>
   <%= f.label :description %>
   <%= f.text_area :description, size: "30x10" %><br>
 
+  <%= f.label :category %>
+  <%= f.collection_select :category_id, Category.all, :id, :name, :prompt => "Please Select One" %><br>
+
   <%= f.fields_for :ingredients do |ingredient| %>
       <%= ingredient.label "Ingredient Name" %>
       <%= ingredient.text_field :name %><br>
