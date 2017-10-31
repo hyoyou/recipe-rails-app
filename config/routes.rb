@@ -4,5 +4,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'callbacks' }
 
+  get '/categories' => 'categories#index'
+
   root 'welcome#home'
 end
