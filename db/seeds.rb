@@ -15,6 +15,7 @@ recipe1 = Recipe.create(name: "Fettuccine Alfredo",
                         Add pasta to sauce.
                         Use enough of the pasta so that all of the sauce is used and the pasta is thoroughly coated.
                         Serve immediately.",
-                        user_id: 2)
+                        user_id: 2,
+                        category_id: 2)
 
 user = User.create(email: "heather@heatheryou.com", password: '12345678')
