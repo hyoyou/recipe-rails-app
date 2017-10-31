@@ -1,4 +1,5 @@
 <% @recipes.each do |recipe| %>
   <h3><%= recipe.name %></h3><br>
   <p><%= recipe.description %></p>
+  Category: <%= recipe.category.name %>
 <% end %>
