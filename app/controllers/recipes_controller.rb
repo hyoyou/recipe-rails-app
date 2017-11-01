@@ -8,6 +8,10 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    7.times do
+      #@recipe.ingredients.build
+      @recipe.ingredients.build.recipe_ingredients.build
+    end
   end
 
   def create
@@ -21,13 +25,13 @@ class RecipesController < ApplicationController
   end
 
   def show
-    binding.pry
+    #binding.pry
     @recipe = Recipe.find(params[:id])
     @ingredients = @recipe.ingredients.all
   end
 
   private
   def recipe_params
-    params.require(:recipe).permit(:name, :description, :user_id, :category_id, ingredients_attributes: [[:name, recipe_ingredients_attributes: [:quantity, :key_ingredient]]])
+    params.require(:recipe).permit(:name, :description, :user_id, :category_id, ingredients_attributes: [:name, recipe_ingredients_attributes: [:quantity, :key_ingredient]])
   end
 end

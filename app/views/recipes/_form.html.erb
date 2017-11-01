@@ -21,8 +21,9 @@
   <%= f.label :category %>
   <%= f.collection_select :category_id, Category.all, :id, :name, :prompt => "Please Select One" %><br>
 
-  <%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredients_fields| %>
-    <%= render 'ingredient_fields', f: ingredients_fields %>
+  <h3>Ingredients</h3>
+  <%= f.fields_for :ingredients do |ingredient_builder| %>
+    <%= render 'ingredient_fields', f: ingredient_builder %>
   <% end %>
 
   <%= f.submit %>
