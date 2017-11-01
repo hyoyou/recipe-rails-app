@@ -39,7 +39,7 @@ gem 'omniauth-github'
 gem 'dotenv-rails'
 
 # Use Cocoon for nested forms
-gem 'cocoon'
+#gem 'cocoon'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

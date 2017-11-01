@@ -1,0 +1,17 @@
+<div class='nested-fields'>
+  <div class="field">
+    <%= f.label "Ingredient Name" %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |recipe_ingredients_fields| %>
+      <%= recipe_ingredients_fields.label :quantity %>
+      <%= recipe_ingredients_fields.text_field :quantity %>
+      <%= recipe_ingredients_fields.check_box :key_ingredient %>
+      <%= recipe_ingredients_fields.label :key_ingredient %><br>
+    <% end %>
+  </div>
+  
+  <%= link_to_remove_association "Remove Ingredient", f %>
+</div>
