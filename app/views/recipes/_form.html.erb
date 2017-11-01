@@ -1,0 +1,43 @@
+<% if @recipe.errors.any? %>
+  <div id="error_explanation">
+    <h2>There were some errors:</h2>
+    <ul>
+      <% @recipe.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h1>Enter a New Recipe</h1>
+
+<%= form_for @recipe do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+
+  <%= f.label :description %>
+  <%= f.text_area :description, size: "30x10" %><br>
+
+  <%= f.label :category %>
+  <%= f.collection_select :category_id, Category.all, :id, :name, :prompt => "Please Select One" %><br>
+
+  <%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredients_fields| %>
+      <%= ingredients_fields.label "Ingredient Name" %>
+      <%= ingredients_fields.text_field :name %><br>
+
+      <%= ingredients_fields.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |recipe_ingredients_fields| %>
+        <%= recipe_ingredients_fields.label :quantity %>
+        <%= recipe_ingredients_fields.text_field :quantity %>
+        <%= recipe_ingredients_fields.check_box :key_ingredient %>
+        <%= recipe_ingredients_fields.label :key_ingredient %><br>
+      <% end %>
+
+      <div class="add-more-ingredients">
+        <%#= link_to_add_association 'Add Another Ingredient', f, :ingredients %>
+      </div>
+
+  <% end %>
+  <%#= link_to 'add ingredient', @recipe %>
+
+  <%= f.submit %>
+<% end %>
