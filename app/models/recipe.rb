@@ -12,7 +12,7 @@ class Recipe < ApplicationRecord
 
   #"ingredients_attributes"=>{"0"=>{"name"=>"Fettucine"}, "1"=>{"name"=>"Heavy Cream"}, "2"=>{"name"=>"Parmesan Cheese"}}
   def ingredients_attributes=(ingredients_attributes)
-    ingredient_attributes.values.each do |ingredient_attribute|
+    ingredients_attributes.values.each do |ingredient_attribute|
       if !ingredient_attribute.blank?
         ingredient = Ingredient.find_or_create_by(name: ingredient_attribute[:name])
         self.ingredients << ingredient
