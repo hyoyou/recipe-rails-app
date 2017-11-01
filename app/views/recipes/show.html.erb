@@ -6,6 +6,6 @@ Category: <%= @recipe.category.name %><br><br>
 Ingredients:
 <ul>
 <%= @ingredients.each do |ingredient| %>
-  <li>Name: <%= ingredient.name %> Quantity: <%= RecipeIngredient.find_by(ingredient_id: ingredient.id, recipe_id: @recipe.id).quantity %> </li>
+  <li>Name: <%= ingredient.name %> Quantity: <%= ingredient.recipe_ingredients.last.quantity %> </li>
 <% end %>
 </ul>

@@ -1,6 +1,7 @@
 require 'pry'
 
 class RecipesController < ApplicationController
+  include RecipesHelper
 
   def index
     @recipes = Recipe.all
@@ -15,9 +16,10 @@ class RecipesController < ApplicationController
   end
 
   def create
-    raise params.inspect
-    @recipe = current_user.recipes.build(recipe_params)
+    #raise params.inspect
+    @recipe = current_user.recipes.build(name: params[:recipe][:name], description: params[:recipe][:description], category_id: params[:recipe][:category_id])
     if @recipe.save
+      save_recipe_ingredients(recipe_params)
       redirect_to recipe_path(@recipe)
     else
       render :new
@@ -28,7 +30,7 @@ class RecipesController < ApplicationController
     #binding.pry
     @recipe = Recipe.find(params[:id])
     @ingredients = @recipe.ingredients.all
-    #binding.pry
+    binding.pry
   end
 
   private
