@@ -8,7 +8,7 @@ class Recipe < ApplicationRecord
   validates :name, :description, presence: true
 
   accepts_nested_attributes_for :ingredients
-  #accepts_nested_attributes_for :recipe_ingredients
+  accepts_nested_attributes_for :recipe_ingredients
 
   #"ingredients_attributes"=>{"0"=>{"name"=>"Fettucine"}, "1"=>{"name"=>"Heavy Cream"}, "2"=>{"name"=>"Parmesan Cheese"}}
   def ingredients_attributes=(ingredients_attributes)
