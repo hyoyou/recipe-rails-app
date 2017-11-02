@@ -4,11 +4,18 @@
 Category: <%= @recipe.category.name %><br><br>
 
 Ingredients:
-<ul>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Quantity</th>
+  </tr>
 <% @ingredients.each do |ingredient| %>
-  <li>Name: <%= ingredient.name %> Quantity: <%= ingredient.recipe_ingredients.last.quantity %> </li>
+  <tr>
+    <td><%= ingredient.name %></td>
+    <td><%= ingredient.recipe_ingredients.last.quantity %></td>
+  </tr>
 <% end %>
-</ul>
+</table>
 
 <%= link_to "Edit", edit_recipe_path(@recipe) %>
 <%= link_to "Delete", recipe_path(@recipe), method: :delete %>
