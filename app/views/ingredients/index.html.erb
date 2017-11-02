@@ -2,6 +2,6 @@
 
 <ul>
 <% @ingredients.each do |ingredient| %>
-  <li><%= ingredient.name %></li>
+  <li><%= ingredient.name %><%= link_to "Delete", ingredient_path(ingredient), method: :delete %></li>
 <% end %>
 </ul>
