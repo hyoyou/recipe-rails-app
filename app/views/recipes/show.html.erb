@@ -9,3 +9,5 @@ Ingredients:
   <li>Name: <%= ingredient.name %> Quantity: <%= ingredient.recipe_ingredients.last.quantity %> </li>
 <% end %>
 </ul>
+
+<%= link_to "Edit", edit_recipe_path(@recipe) %>
