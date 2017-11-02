@@ -21,7 +21,7 @@ class RecipesController < ApplicationController
 
   def create
     #raise params.inspect
-    @recipe = current_user.recipes.build(name: params[:recipe][:name], description: params[:recipe][:description], category_id: params[:recipe][:category_id])
+    @recipe = current_user.recipes.build(recipe_params)
     if @recipe.save
       save_recipe_ingredients(recipe_params)
       redirect_to recipe_path(@recipe)
@@ -31,6 +31,7 @@ class RecipesController < ApplicationController
   end
 
   def update
+    raise params.inspect
     @recipe = Recipe.find(params[:id])
     @recipe.update(recipe_params)
     if @recipe.save
