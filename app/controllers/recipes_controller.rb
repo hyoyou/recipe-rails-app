@@ -31,7 +31,7 @@ class RecipesController < ApplicationController
   end
 
   def update
-    raise params.inspect
+    #raise params.inspect
     @recipe = Recipe.find(params[:id])
     @recipe.update(recipe_params)
     if @recipe.save
