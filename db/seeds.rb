@@ -18,4 +18,18 @@ recipe1 = Recipe.create(name: "Fettuccine Alfredo",
                         user_id: 2,
                         category_id: 2)
 
+ingredient1 = Ingredient.create(name: "Fettucine")
+ingredient2 = Ingredient.create(name: "Butter")
+ingredient3 = Ingredient.create(name: "Heavy Cream")
+ingredient4 = Ingredient.create(name: "Salt")
+ingredient5 = Ingredient.create(name: "Pepper")
+ingredient6 = Ingredient.create(name: "Parmesan Cheese")
+
+recipe_ingredient1 = RecipeIngredient.create(recipe_id: 18, ingredient_id: 22, quantity: "1 Box", key_ingredient: true)
+recipe_ingredient1 = RecipeIngredient.create(recipe_id: 18, ingredient_id: 23, quantity: "1 Cup", key_ingredient: false)
+recipe_ingredient1 = RecipeIngredient.create(recipe_id: 18, ingredient_id: 24, quantity: "3/4 Pint", key_ingredient: false)
+recipe_ingredient1 = RecipeIngredient.create(recipe_id: 18, ingredient_id: 25, quantity: "1 tsp", key_ingredient: false)
+recipe_ingredient1 = RecipeIngredient.create(recipe_id: 18, ingredient_id: 26, quantity: "1 tsp", key_ingredient: false)
+recipe_ingredient1 = RecipeIngredient.create(recipe_id: 18, ingredient_id: 27, quantity: "1/2 Cup", key_ingredient: false)
+
 user = User.create(email: "heather@heatheryou.com", password: '12345678')
