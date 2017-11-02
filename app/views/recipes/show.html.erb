@@ -5,7 +5,7 @@ Category: <%= @recipe.category.name %><br><br>
 
 Ingredients:
 <ul>
-<%= @ingredients.each do |ingredient| %>
+<% @ingredients.each do |ingredient| %>
   <li>Name: <%= ingredient.name %> Quantity: <%= ingredient.recipe_ingredients.last.quantity %> </li>
 <% end %>
 </ul>
