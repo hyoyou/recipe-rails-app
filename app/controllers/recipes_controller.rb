@@ -48,6 +48,16 @@ class RecipesController < ApplicationController
     #binding.pry
   end
 
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    if @recipe.user_id == current_user[:id]
+      @recipe.destroy
+      redirect_to recipes_path
+    else
+      redirect_to root_path
+    end
+  end
+
   private
   def recipe_params
     params.require(:recipe).permit(:name,
