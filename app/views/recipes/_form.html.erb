@@ -20,7 +20,7 @@
   <%= f.collection_select :category_id, Category.all, :id, :name, :prompt => "Please Select One" %><br>
 
   <h3>Ingredients</h3>
-  <%= f.fields_for :ingredients do |ingredient_builder| %>
+  <%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredient_builder| %>
     <%= render 'ingredient_fields', f: ingredient_builder %>
   <% end %>
 
