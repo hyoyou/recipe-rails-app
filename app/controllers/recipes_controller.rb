@@ -62,6 +62,6 @@ class RecipesController < ApplicationController
                                    :user_id,
                                    :category_id,
                                    ingredients_ids: [],
-                                   ingredients_attributes: [:id, :name, recipe_ingredients_attributes: [:quantity, :key_ingredient]])
+                                   ingredients_attributes: [:name, recipe_ingredients_attributes: [:quantity, :key_ingredient]])
   end
 end
