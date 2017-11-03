@@ -31,11 +31,11 @@ class RecipesController < ApplicationController
   end
 
   def update
-    #raise params.inspect
+    raise params.inspect
     @recipe = Recipe.find(params[:id])
     @recipe.update(recipe_params)
     if @recipe.save
-      save_recipe_ingredients(recipe_params)
+      #save_recipe_ingredients(recipe_params)
       redirect_to recipe_path(@recipe)
     else
       render :edit
