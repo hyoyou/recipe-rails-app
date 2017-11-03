@@ -9,10 +9,6 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    #7.times do
-    #  ingredient = @recipe.ingredients.build
-    #  ingredient.recipe_ingredients.build
-    #end
   end
 
   def edit
@@ -31,11 +27,11 @@ class RecipesController < ApplicationController
   end
 
   def update
-    raise params.inspect
+    #raise params.inspect
     @recipe = Recipe.find(params[:id])
     @recipe.update(recipe_params)
     if @recipe.save
-      #save_recipe_ingredients(recipe_params)
+      save_recipe_ingredients(recipe_params)
       redirect_to recipe_path(@recipe)
     else
       render :edit
@@ -66,6 +62,6 @@ class RecipesController < ApplicationController
                                    :user_id,
                                    :category_id,
                                    ingredients_ids: [],
-                                   ingredients_attributes: [:id, :name, recipe_ingredients_attributes: [:id, :quantity, :key_ingredient]])
+                                   ingredients_attributes: [:id, :name, recipe_ingredients_attributes: [:quantity, :key_ingredient]])
   end
 end

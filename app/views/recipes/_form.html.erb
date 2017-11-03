@@ -20,6 +20,23 @@
   <%= f.collection_select :category_id, Category.all, :id, :name, :prompt => "Please Select One" %><br>
 
   <h3>Ingredients</h3>
+  <% if !@recipe.ingredients.all.blank? %>
+    Existing Ingredients:<br>
+    <%= f.fields_for :ingredients, @recipe.ingredients.all do |ingredients_fields| %>
+      <%= ingredients_fields.label :name %>
+      <%= ingredients_fields.text_field :name %>
+
+      <%= ingredients_fields.fields_for :recipe_ingredients, @recipe.recipe_ingredients.where(ingredient_id: ingredients_fields.object.id) do |recipe_ingredients_fields| %>
+        <%= recipe_ingredients_fields.label :quantity %>
+        <%= recipe_ingredients_fields.text_field :quantity %>
+        <%= recipe_ingredients_fields.check_box :key_ingredient%> Key Ingredient<br>
+      <% end %>
+      
+    <% end %>
+  <% end %>
+  <br>
+
+  New Ingredient:<br>
   <%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredient_builder| %>
     <%= render 'ingredient_fields', f: ingredient_builder %>
   <% end %>
@@ -31,7 +48,7 @@
   <%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredient_builder| %>
     <%= render 'ingredient_fields', f: ingredient_builder %>
   <% end %>
-  
+
   <%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredient_builder| %>
     <%= render 'ingredient_fields', f: ingredient_builder %>
   <% end %>

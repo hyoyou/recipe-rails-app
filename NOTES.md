@@ -1,3 +1,5 @@
+1//Params sent when creating recipe
+
 "recipe"=>{
   "name"=>"Quantity Test",
   "description"=>"Trying to save quantity",
@@ -39,23 +41,151 @@ ingredients_attributes.each do |ingredient|
           }
 
 
+2//Trying to debug why extra params are being sent when editing a recipe
 
-@recipe = current_user.recipes.build(name: params[:recipe][:name], description: params[:recipe][:description], category_id: params[:recipe][:category_id])
-if @recipe.save
-  save_recipe_ingredients(recipe_params)
-  redirect_to recipe_path(@recipe)
-else
-  render :new
-end
+"recipe"=>{
+  "name"=>"Chocolate Milk",
+  "description"=>"Warm milk in saucepan and slowly melt the chocolate, stirring constantly.",
+  "category_id"=>"5",
+  "ingredients_attributes"=>{
+    "0"=>{
+      "name"=>"Chocolate",
+      "recipe_ingredients_attributes"=>{
+        "0"=>{
+          "quantity"=>"2 lbs",
+          "key_ingredient"=>"1",
+          "id"=>"149"}
+          },
+      "id"=>"48"},
+    "1"=>{
+      "name"=>"Milk",
+      "recipe_ingredients_attributes"=>{
+        "0"=>{
+          "quantity"=>"3 Cups",
+          "key_ingredient"=>"0",
+          "id"=>"150"}},
+      "id"=>"49"},
+    "2"=>{
+      "name"=>"",
+      "recipe_ingredients_attributes"=>{
+        "0"=>{
+          "quantity"=>"",
+          "key_ingredient"=>"0",
+          "id"=>"151"},
+        "1"=>{
+          "quantity"=>"",
+          "key_ingredient"=>"0",
+          "id"=>"152"},
+        "2"=>{
+          "quantity"=>"",
+          "key_ingredient"=>"0",
+          "id"=>"153"},
+        "3"=>{
+          "quantity"=>"",
+          "key_ingredient"=>"0",
+          "id"=>"154"},
+        "4"=>{
+          "quantity"=>"",
+          "key_ingredient"=>"0",
+          "id"=>"155"}},
+      "id"=>"50"},
+    "3"=>{
+      "name"=>"",
+      "recipe_ingredients_attributes"=>{
+        "0"=>{
+          "quantity"=>"",
+          "key_ingredient"=>"0",
+          "id"=>"151"},
+        "1"=>{
+          "quantity"=>"",
+          "key_ingredient"=>"0",
+          "id"=>"152"},
+        "2"=>{
+          "quantity"=>"",
+          "key_ingredient"=>"0",
+          "id"=>"153"},
+        "3"=>{
+          "quantity"=>"",
+          "key_ingredient"=>"0",
+          "id"=>"154"},
+        "4"=>{
+          "quantity"=>"",
+          "key_ingredient"=>"0",
+          "id"=>"155"}},
+        "id"=>"50"},
+      "4"=>{
+        "name"=>"",
+        "recipe_ingredients_attributes"=>{
+          "0"=>{
+            "quantity"=>"",
+            "key_ingredient"=>"0",
+            "id"=>"151"},
+          "1"=>{
+            "quantity"=>"",
+            "key_ingredient"=>"0",
+            "id"=>"152"},
+          "2"=>{
+            "quantity"=>"",
+            "key_ingredient"=>"0",
+            "id"=>"153"},
+          "3"=>{
+            "quantity"=>"",
+            "key_ingredient"=>"0",
+            "id"=>"154"},
+          "4"=>{
+            "quantity"=>"",
+            "key_ingredient"=>"0",
+            "id"=>"155"}},
+        "id"=>"50"},
+      "5"=>{
+        "name"=>"",
+        "recipe_ingredients_attributes"=>{
+          "0"=>{
+            "quantity"=>"",
+            "key_ingredient"=>"0",
+            "id"=>"151"},
+          "1"=>{
+            "quantity"=>"",
+            "key_ingredient"=>"0",
+            "id"=>"152"},
+          "2"=>{
+            "quantity"=>"",
+            "key_ingredient"=>"0",
+            "id"=>"153"},
+          "3"=>{
+            "quantity"=>"",
+            "key_ingredient"=>"0",
+            "id"=>"154"},
+          "4"=>{
+            "quantity"=>"",
+            "key_ingredient"=>"0",
+            "id"=>"155"}},
+        "id"=>"50"},
+      "6"=>{
+        "name"=>"",
+        "recipe_ingredients_attributes"=>{
+          "0"=>{
+            "quantity"=>"",
+            "key_ingredient"=>"0",
+            "id"=>"151"},
+          "1"=>{
+            "quantity"=>"",
+            "key_ingredient"=>"0",
+            "id"=>"152"},
+          "2"=>{
+            "quantity"=>"",
+            "key_ingredient"=>"0",
+            "id"=>"153"},
+          "3"=>{
+            "quantity"=>"",
+            "key_ingredient"=>"0",
+            "id"=>"154"},
+          "4"=>{
+            "quantity"=>"",
+            "key_ingredient"=>"0",
+            "id"=>"155"}},
+        "id"=>"50"}}}
 
-<% 7.times do %>
-  <%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredients_fields| %>
-    <%= ingredients_fields.text_field :name, :placeholder => "Name" %>
-
-    <%= ingredients_fields.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |recipe_ingredients_fields| %>
-      <%= recipe_ingredients_fields.text_field :quantity, :placeholder => "Quantity, Ex: '1 tbsp'" %>
-      <%= recipe_ingredients_fields.check_box :key_ingredient %>
-      <%= recipe_ingredients_fields.label :key_ingredient %><br>
-    <% end %>
-  <% end %>
-<% end %>
+When I create a recipe with 2/7 ingredients, it creates 5 blank ingredients with 5 blank recipe_ingredients forms for each
+When I create a recipe with 6/7 ingredients, it creates 1 blank ingredient with 5 blank recipe_ingredients forms
+--> Must be saving the blank ingredients and recipe_ingredients
