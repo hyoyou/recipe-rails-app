@@ -24,5 +24,21 @@
     <%= render 'ingredient_fields', f: ingredient_builder %>
   <% end %>
 
+  <%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredient_builder| %>
+    <%= render 'ingredient_fields', f: ingredient_builder %>
+  <% end %>
+
+  <%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredient_builder| %>
+    <%= render 'ingredient_fields', f: ingredient_builder %>
+  <% end %>
+  
+  <%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredient_builder| %>
+    <%= render 'ingredient_fields', f: ingredient_builder %>
+  <% end %>
+
+  <%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredient_builder| %>
+    <%= render 'ingredient_fields', f: ingredient_builder %>
+  <% end %>
+
   <%= f.submit %>
 <% end %>
