@@ -20,7 +20,7 @@ class Recipe < ApplicationRecord
   def ingredients_attributes=(ingredients_attributes)
     ingredients_attributes.values.each do |ingredient_attribute|
       if !ingredient_attribute == ""
-        ingredient = Ingredient.find_or_create_by(name: ingredient_attribute[:name])
+        ingredient = Ingredient.find_or_create_by(name: ingredient_attribute)
         self.ingredients << ingredient
       end
     end
