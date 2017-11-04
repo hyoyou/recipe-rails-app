@@ -12,7 +12,7 @@ Ingredients:
 <% @ingredients.each do |ingredient| %>
   <tr>
     <td><%= ingredient.name %></td>
-    <td><%= ingredient.recipe_ingredients.last.quantity %></td>
+    <td><% recipe_ingredient = RecipeIngredient.where(recipe_id: @recipe.id, ingredient_id: ingredient.id) %><%= recipe_ingredient.first.quantity %></td>
   </tr>
 <% end %>
 </table>
