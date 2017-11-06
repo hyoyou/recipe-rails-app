@@ -1,7 +1,10 @@
+<% if current_user %>
+  <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+<% else %>
+  <%= link_to "Sign In", new_user_session_path %>
+  <%= link_to "Sign Up", new_user_registration_path %>
+<% end %>
 
-<%= link_to "Sign in with GitHub", user_github_omniauth_authorize_path %>
-<%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
-<%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
 
 <h1>Recipes</h1>
 
@@ -11,4 +14,6 @@
   Category: <%= recipe.category.name %><br>
 <% end %><br>
 
-<%= link_to "Add New Recipe", new_recipe_path %>
+<% if current_user %>
+  <%= link_to "Add New Recipe", new_recipe_path %>
+<% end %>
