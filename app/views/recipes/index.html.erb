@@ -1,12 +1,3 @@
-<% if current_user %>
-  Currently logged in as: <%= current_user.email %>
-  <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
-<% else %>
-  <%= link_to "Sign In", new_user_session_path %>
-  <%= link_to "Sign Up", new_user_registration_path %>
-<% end %>
-
-
 <h1>Recipes</h1>
 
 <%= link_to "View by Category", categories_path %>
