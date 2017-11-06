@@ -11,5 +11,5 @@ Rails.application.routes.draw do
 
   get '/categories' => 'categories#index'
 
-  root 'welcome#home'
+  root 'recipes#index'
 end
