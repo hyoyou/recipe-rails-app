@@ -1,4 +1,5 @@
 <% if current_user %>
+  Currently logged in as: <%= current_user.email %>
   <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
 <% else %>
   <%= link_to "Sign In", new_user_session_path %>
@@ -7,6 +8,8 @@
 
 
 <h1>Recipes</h1>
+
+<%= link_to "View by Category", categories_path %>
 
 <% @recipes.each do |recipe| %>
   <h3><%= link_to recipe.name, recipe_path(recipe) %></h3><br>
