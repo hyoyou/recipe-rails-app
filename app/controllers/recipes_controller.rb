@@ -12,10 +12,12 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
+    if @recipe.user_id != current_user[:id]
+      redirect_to recipes_path
+    end
   end
 
   def create
-    #raise params.inspect
     @recipe = current_user.recipes.build(recipe_params)
     if @recipe.save
       save_recipe_ingredients(recipe_params)
@@ -26,7 +28,6 @@ class RecipesController < ApplicationController
   end
 
   def update
-    #raise params.inspect
     @recipe = Recipe.find(params[:id])
     @recipe.update(recipe_params)
     if @recipe.save
@@ -38,10 +39,8 @@ class RecipesController < ApplicationController
   end
 
   def show
-    #binding.pry
     @recipe = Recipe.find(params[:id])
     @ingredients = @recipe.ingredients.all
-    #binding.pry
   end
 
   def destroy
