@@ -1,6 +1,7 @@
 require 'pry'
 
 class RecipesController < ApplicationController
+  before_action :set_recipe, only: [:edit, :update, :show, :destroy]
 
   def index
     @recipes = Recipe.all
@@ -11,7 +12,6 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
     if @recipe.user_id != current_user[:id]
       redirect_to recipes_path
     end
@@ -28,7 +28,6 @@ class RecipesController < ApplicationController
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
     @recipe.update(recipe_params)
     if @recipe.save
       save_recipe_ingredients(recipe_params)
@@ -39,12 +38,10 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
     @ingredients = @recipe.ingredients.all
   end
 
   def destroy
-    @recipe = Recipe.find(params[:id])
     if @recipe.user_id == current_user[:id]
       @recipe.destroy
       redirect_to recipes_path
@@ -54,6 +51,10 @@ class RecipesController < ApplicationController
   end
 
   private
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
+  end
+
   def recipe_params
     params.require(:recipe).permit(:name,
                                    :description,
