@@ -1,7 +1,6 @@
 require 'pry'
 
 class RecipesController < ApplicationController
-  #include RecipesHelper
 
   def index
     @recipes = Recipe.all
@@ -79,5 +78,5 @@ class RecipesController < ApplicationController
       end
     end
   end
-  
+
 end

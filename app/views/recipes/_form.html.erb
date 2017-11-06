@@ -24,6 +24,7 @@
     Existing Ingredients:<br>
     <%= f.fields_for :ingredients, @recipe.ingredients.all do |ingredients_fields| %>
       <%= render 'ingredient_fields', f: ingredients_fields %>
+      <%= link_to "Delete", recipe_ingredient_path(@recipe, ingredients_fields.object.id), method: :delete %><br>
     <% end %>
   <% end %>
   <br>
