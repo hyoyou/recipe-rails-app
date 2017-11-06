@@ -13,6 +13,7 @@ class RecipesController < ApplicationController
 
   def edit
     if @recipe.user_id != current_user[:id]
+      flash[:notice] = "You can only edit your own recipe"
       redirect_to recipes_path
     end
   end
