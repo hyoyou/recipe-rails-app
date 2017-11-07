@@ -7,11 +7,13 @@ Rails.application.routes.draw do
     resources :ingredients, only: [:destroy]
   end
 
+  resources :recipes, only: [:show] do
+    resources :ratings, only: [:index, :new]
+  end
+
   resources :categories, only: [:index, :show]
 
   devise_for :users, controllers: { omniauth_callbacks: 'callbacks' }
-
-  #get '/categories' => 'categories#index'
 
   root 'recipes#index'
 end
