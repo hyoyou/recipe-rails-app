@@ -1,0 +1,7 @@
+<h1>Ratings for <%= @recipe.name %></h1>
+
+<ul>
+<% @ratings.each do |rating| %>
+  <li><%= rating.user.email %> rated <%= rating.rating %></li>
+<% end %>
+</ul>

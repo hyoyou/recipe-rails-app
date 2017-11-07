@@ -1,0 +1,18 @@
+<% if @recipe.errors.any? %>
+  <div id="error_explanation">
+    <h2>There were some errors:</h2>
+    <ul>
+      <% @recipe.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h1>How would you rate <%= @recipe.name %>?</h1>
+
+<%= form_for [@recipe, @rating] do |f| %>
+  <%= f.hidden_field :recipe_id, value: @recipe.id %>
+  <%= f.text_field :rating %>
+  <%= f.submit "Submit Rating"%>
+<% end %>

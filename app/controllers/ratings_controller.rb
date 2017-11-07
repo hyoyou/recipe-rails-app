@@ -1,17 +1,24 @@
+require 'pry'
+
 class RatingsController < ApplicationController
   def index
     @ratings =  Rating.all
+    @recipe = Recipe.find(params[:recipe_id])
   end
 
   def new
-    raise params.inspect
+    #raise params.inspect
+    #{"controller"=>"ratings", "action"=>"new", "recipe_id"=>"2"}
     @rating = Rating.new
+    @recipe = Recipe.find(params[:recipe_id])
   end
 
   def create
-    @rating = Rating.new(rating_params)
-    if @rating.save?
-      redirect_to recipe_ratings_path
+    #binding.pry
+    @rating = current_user.ratings.build(rating_params)
+    if @rating.save
+      @recipe = Recipe.find(params[:recipe_id])
+      redirect_to recipe_ratings_path(@recipe)
     else
       render :new
     end
