@@ -1,8 +1,8 @@
 <%= link_to "Back to Recipes", recipes_path %>
 
 <h1><%= @recipe.name %></h1>
-Average Rating: <br>
-<% if current_user.ratings.where(recipe_id: @recipe.id) %>
+<%= link_to "Average Rating:", recipe_ratings_path(@recipe) %> <br>
+<% if !current_user.ratings.where(recipe_id: @recipe.id) == nil %>
   You rated this recipe:
   <% user_rating = current_user.ratings.where(recipe_id: @recipe.id) %>
   <%= user_rating.first.rating %>

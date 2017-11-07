@@ -12,7 +12,7 @@
 <h1>Ratings for <%= @recipe.name %></h1>
 
 <ul>
-<% @recipe.ratings.each do |rating| %>
+<% @recipe.ratings.most_recent.each do |rating| %>
   <li><%= rating.user.email.split("@")[0] %> rated <%= rating.rating %></li>
 <% end %>
 </ul>
