@@ -1,7 +1,11 @@
 <%= link_to "Back to Recipes", recipes_path %>
 
 <h1><%= @recipe.name %></h1>
+<%= link_to "Rate this Recipe", new_recipe_rating_path(@recipe) %>
+
 <p><%= @recipe.description %></p>
+
+
 
 Category: <%= @recipe.category.name %><br><br>
 
