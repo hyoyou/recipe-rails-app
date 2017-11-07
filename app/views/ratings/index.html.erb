@@ -1,7 +1,18 @@
+<% if @recipe.errors.any? %>
+  <div id="error_explanation">
+    <h2>There were some errors:</h2>
+    <ul>
+      <% @recipe.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <h1>Ratings for <%= @recipe.name %></h1>
 
 <ul>
-<% @ratings.each do |rating| %>
-  <li><%= rating.user.email %> rated <%= rating.rating %></li>
+<% @recipe.ratings.each do |rating| %>
+  <li><%= rating.user.email.split("@")[0] %> rated <%= rating.rating %></li>
 <% end %>
 </ul>

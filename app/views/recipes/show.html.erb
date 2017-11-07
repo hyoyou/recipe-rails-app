@@ -1,8 +1,14 @@
 <%= link_to "Back to Recipes", recipes_path %>
 
 <h1><%= @recipe.name %></h1>
-<%= link_to "Rate this Recipe", new_recipe_rating_path(@recipe) %>
-
+Average Rating: <br>
+<% if current_user.ratings.where(recipe_id: @recipe.id) %>
+  You rated this recipe:
+  <% user_rating = current_user.ratings.where(recipe_id: @recipe.id) %>
+  <%= user_rating.first.rating %>
+<% else %>
+  <%= link_to "Rate this Recipe", new_recipe_rating_path(@recipe) %>
+<% end %>
 <p><%= @recipe.description %></p>
 
 
