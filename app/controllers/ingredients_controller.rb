@@ -4,6 +4,7 @@ class IngredientsController < ApplicationController
   end
 
   def show
+    raise params.inspect
     @ingredient = Ingredient.find(params[:id])
   end
 
