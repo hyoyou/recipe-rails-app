@@ -189,3 +189,20 @@ ingredients_attributes.each do |ingredient|
 When I create a recipe with 2/7 ingredients, it creates 5 blank ingredients with 5 blank recipe_ingredients forms for each
 When I create a recipe with 6/7 ingredients, it creates 1 blank ingredient with 5 blank recipe_ingredients forms
 --> Must be saving the blank ingredients and recipe_ingredients
+
+3//Custom attribute writer is not working, have it working with a method right now
+
+def save_recipe_ingredients(recipe_params)
+  if recipe_params[:ingredients_attributes]
+    recipe_params[:ingredients_attributes].each do |ingredient_attribute|
+      if !recipe_params[:ingredients_attributes][ingredient_attribute][:name].blank? && !recipe_params[:ingredients_attributes][ingredient_attribute][:recipe_ingredients_attributes]["0"][:quantity].blank?
+        ingredient_name = recipe_params[:ingredients_attributes][ingredient_attribute][:name].capitalize
+        ingredient = Ingredient.find_or_create_by(name: ingredient_name)
+        recipe_ingredient = RecipeIngredient.find_or_create_by(recipe_id: @recipe.id, ingredient_id: ingredient.id)
+        recipe_ingredient.quantity = recipe_params[:ingredients_attributes][ingredient_attribute][:recipe_ingredients_attributes]["0"][:quantity]
+        recipe_ingredient.key_ingredient = recipe_params[:ingredients_attributes][ingredient_attribute][:recipe_ingredients_attributes]["0"][:key_ingredient]
+        recipe_ingredient.save
+      end
+    end
+  end
+end
