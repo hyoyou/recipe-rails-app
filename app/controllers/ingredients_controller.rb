@@ -3,11 +3,6 @@ class IngredientsController < ApplicationController
     @ingredients = Ingredient.all
   end
 
-  def show
-    raise params.inspect
-    @ingredient = Ingredient.find(params[:id])
-  end
-
   def destroy
     @recipe = Recipe.find_by(id: params[:recipe_id])
     @recipe_ingredient = RecipeIngredient.find_by(recipe_id: @recipe, ingredient_id: params[:id])

@@ -1,7 +1,0 @@
-<h1>Recipes that use <%= @ingredient.name %></h1>
-
-<% more_recipes_array = RecipeIngredient.where(ingredient_id: @ingredient).to_a %>
-<% more_recipes_array.each do |recipes| %>
-  <% recipe = Recipe.find(recipes.recipe_id) %>
-  <%= link_to recipe.name, recipe_path(recipe) %><br>
-<% end %>

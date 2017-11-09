@@ -4,7 +4,7 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:edit, :update, :show, :destroy]
 
   def index
-    #binding.pry
+    #raise params.inspect
     if params[:ingredient_id]
       recipe_ingredients_array = RecipeIngredient.where(ingredient_id: params[:ingredient_id]).to_a
       @recipes = []

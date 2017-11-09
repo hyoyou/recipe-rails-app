@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
   resources :ingredients
 
+  #show recipes by key_ingredient
   resources :ingredients, only: [:show] do
     resources :recipes, only: [:index]
   end
 
   resources :recipes
 
+  #delete ingredients from recipe (only deletes key_ingredient)
   resources :recipes, only: [:edit] do
     resources :ingredients, only: [:destroy]
   end
