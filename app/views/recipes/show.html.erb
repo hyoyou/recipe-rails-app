@@ -36,6 +36,7 @@ Ingredients:
   <%= link_to "Edit", edit_recipe_path(@recipe) %>
   <%= link_to "Delete", recipe_path(@recipe), method: :delete %>
 <% end %>
+<br><br>
 
 Have
 <% key_ingredient_array = RecipeIngredient.where(recipe_id: @recipe.id, key_ingredient: true).to_a%>
