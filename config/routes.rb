@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :ingredients
 
+  resources :ingredients, only: [:show] do
+    resources :recipes, only: [:index]
+  end
+
   resources :recipes
 
   resources :recipes, only: [:edit] do

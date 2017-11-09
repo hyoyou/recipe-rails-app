@@ -4,7 +4,18 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:edit, :update, :show, :destroy]
 
   def index
-    @recipes = Recipe.all
+    #binding.pry
+    if params[:ingredient_id]
+      recipe_ingredients_array = RecipeIngredient.where(ingredient_id: params[:ingredient_id]).to_a
+      @recipes = []
+      recipe_ingredients_array.each do |recipe_ingredient|
+        recipe = Recipe.find(recipe_ingredient.recipe_id)
+        @recipes << recipe
+      end
+      @recipe
+    else
+      @recipes = Recipe.all
+    end
   end
 
   def new
@@ -61,6 +72,7 @@ class RecipesController < ApplicationController
                                    :description,
                                    :user_id,
                                    :category_id,
+                                   :ingredient_id,
                                    ingredients_ids: [],
                                    ingredients_attributes: [:name, recipe_ingredients_attributes: [:quantity, :key_ingredient]])
   end
