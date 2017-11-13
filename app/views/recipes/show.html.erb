@@ -1,17 +1,18 @@
 <%= link_to "Back to Recipes", recipes_path %>
 
 <h1><%= @recipe.name %></h1>
-<%= link_to "Average Rating:", recipe_ratings_path(@recipe) %> <br>
-<% if !current_user.ratings.where(recipe_id: @recipe.id) == nil %>
-  You rated this recipe:
-  <% user_rating = current_user.ratings.where(recipe_id: @recipe.id) %>
-  <%= user_rating.first.rating %>
-<% else %>
+
+<%= link_to "Average Rating:", recipe_ratings_path(@recipe) %><br>
+
+<% if current_user.ratings.find_by(recipe_id: @recipe.id) == nil %>
   <%= link_to "Rate this Recipe", new_recipe_rating_path(@recipe) %>
-<% end %>
+<% else %>
+  You rated this recipe:
+  <% user_rating = current_user.ratings.find_by(recipe_id: @recipe.id) %>
+  <%= user_rating.rating %>
+<% end %><br><br>
+
 <p><%= @recipe.description %></p>
-
-
 
 Category: <%= @recipe.category.name %><br><br>
 
