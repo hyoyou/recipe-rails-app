@@ -4,23 +4,22 @@
 
 <div class="container">
   <div class="row">
-      <% @recipes.each do |recipe| %>
-        <div class="column">
-        <h3><%= link_to recipe.name, recipe_path(recipe) %></h3><br>
-        <% key_ingredient_array = recipe.recipe_ingredients.to_a %>
-        <% key_ingredient_array.each do |ingredient| %>
-          <% if ingredient.key_ingredient == true %>
-            <% key_ingredient = Ingredient.find(ingredient.ingredient_id) %>
-            Key Ingredient: <%= key_ingredient.name %><br>
-          <% end %>
+    <% @recipes.each do |recipe| %>
+      <div class="column">
+      <h3><%= link_to recipe.name, recipe_path(recipe) %></h3><br>
+      <% key_ingredient_array = recipe.recipe_ingredients.to_a %>
+      <% key_ingredient_array.each do |ingredient| %>
+        <% if ingredient.key_ingredient == true %>
+          <% key_ingredient = Ingredient.find(ingredient.ingredient_id) %>
+          <strong>Key Ingredient:</strong> <%= key_ingredient.name %><br>
         <% end %>
-        Category: <%= recipe.category.name %><br>
-        </div>
-      <% end %><br>
-
+      <% end %>
+      <strong>Category:</strong> <%= recipe.category.name %><br>
+      </div>
+    <% end %>
   </div>
 </div>
-
+<br><br>
 <% if current_user %>
   <%= link_to "Add New Recipe", new_recipe_path %>
 <% end %>
