@@ -1,5 +1,5 @@
 <%= f.label :name %>
-<%= f.text_field :name %>
+<%= f.text_field :name, :readonly => true %>
 
 <%= f.fields_for :recipe_ingredients, @recipe.recipe_ingredients.where(ingredient_id: f.object.id) do |recipe_ingredients_fields| %>
   <%= render 'recipe_ingredient_fields', f: recipe_ingredients_fields %>
