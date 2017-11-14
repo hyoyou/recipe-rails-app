@@ -8,14 +8,25 @@ module RatingsHelper
   end
 
   def rate_recipe(recipe)
-    if current_user.ratings.find_by(recipe_id: recipe.id) == nil
-      link_to "Rate this Recipe", new_recipe_rating_path(recipe)
+    if current_user.ratings.find_by(recipe_id: recipe.id) != nil
+      "You rated this recipe: #{user_rating(recipe)}"
     else
-      puts "You rated this recipe: #{user_rating(recipe)}"
+      link_to "Rate this Recipe", new_recipe_rating_path(recipe)
     end
   end
 
   def user_rating(recipe)
-    current_user.ratings.find_by(recipe_id: recipe.id)
+    r = current_user.ratings.find_by(recipe_id: recipe.id)
+    r.rating
+  end
+
+  def find_key_ingredients(recipe)
+    key_ingredient_array = RecipeIngredient.where(recipe_id: recipe.id, key_ingredient: true).to_a
+    html = ''
+    key_ingredient_array.map do |k|
+      ingredient = Ingredient.find(k.ingredient_id)
+      html += link_to(ingredient.name, ingredient_recipes_path(ingredient), :recipe_id => recipe.id)
+    end
+    html.html_safe
   end
 end
