@@ -1,24 +1,16 @@
-# README
+# Recipe Rails Application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a Rails Application that I created for my Rails Final Project at Learn//Flatiron School.
+Users can view recipes on the homepage or they can filter it by category. On each recipe page, I also give users to search for other recipes using the same key ingredient. Users who are signed up and signed in are also given the option to add a new recipe as well as give ratings for other recipes.
 
-Things you may want to cover:
+## Usage
 
-* Ruby version
+After cloning the repo, run `bundle install` to install dependencies. To migrate your local database, run `rake db:migrate`. To start the application on your machine, run `rails s`. In a browser, go to http://localhost:3000/ to begin (Note: you may be using a different port. Please update accordingly).
 
-* System dependencies
+## Contributing
 
-* Configuration
+Bug reports and pull requests are welcome on GitHub at https://github.com/hyoyou/recipe-rails-app. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
-* Database creation
+## License
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
