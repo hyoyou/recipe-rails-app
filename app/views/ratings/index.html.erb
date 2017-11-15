@@ -1,5 +1,5 @@
 <% if @recipe.errors.any? %>
-  <div id="error_explanation">
+  <div class="fields_with_errors">
     <h2>There were some errors:</h2>
     <ul>
       <% @recipe.errors.full_messages.each do |message| %>
@@ -14,7 +14,7 @@
 <h1>Ratings for <%= @recipe.name %></h1>
 
 <ul>
-<% @recipe.ratings.most_recent.each do |rating| %>
-  <li><%= rating.user.email.split("@")[0] %> rated <%= rating.rating %></li>
-<% end %>
+  <% @recipe.ratings.most_recent.each do |rating| %>
+    <li><%= rating.user.email.split("@")[0] %> rated <%= rating.rating %></li>
+    <% end %>
 </ul>

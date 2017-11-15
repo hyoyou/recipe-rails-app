@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:edit, :update, :show, :destroy]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
     if params[:ingredient_id]
@@ -9,10 +9,14 @@ class RecipesController < ApplicationController
         recipe = Recipe.find(recipe_ingredient.recipe_id)
         @recipes << recipe
       end
-      @recipe
+      @recipes
     else
       @recipes = Recipe.all
     end
+  end
+
+  def show
+    @ingredients = @recipe.ingredients.all
   end
 
   def new
@@ -44,10 +48,6 @@ class RecipesController < ApplicationController
     else
       render :edit
     end
-  end
-
-  def show
-    @ingredients = @recipe.ingredients.all
   end
 
   def destroy
