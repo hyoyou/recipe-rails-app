@@ -1,8 +1,8 @@
-<% if @recipe.errors.any? %>
+<% if @rating.errors.any? %>
   <div id="error_explanation">
     <h2>There were some errors:</h2>
     <ul>
-      <% @recipe.errors.full_messages.each do |message| %>
+      <% @rating.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :ratings, only: [:index, :new, :create]
   end
 
-  resources :categories, only: [:index, :show]
+  resources :categories
 
   devise_for :users, controllers: { omniauth_callbacks: 'callbacks' }
 
