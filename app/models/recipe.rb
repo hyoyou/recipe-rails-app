@@ -8,11 +8,11 @@ class Recipe < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
 
-  accepts_nested_attributes_for :ingredients, reject_if: :reject_ingredients
+  accepts_nested_attributes_for :recipe_ingredients, allow_destroy: true, :reject_if => proc { |attribute| attribute[:quantity].blank? }
 
-  def reject_ingredients(ingredients_attributes)
-    ingredients_attributes.values.each do |ingredient_attribute|
-      ingredient_attribute == ""
+  def reject_recipe_ingredients(recipe_ingredients_attributes)
+    recipe_ingredients_attributes.values.each do |recipe_ingredient_attribute|
+      recipe_ingredient_attribute == ""
     end
   end
 
