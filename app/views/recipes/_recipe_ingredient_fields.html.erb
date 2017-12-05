@@ -1,8 +1,0 @@
-<%= f.fields_for :ingredient do |ingredients_fields| %>
-  <%= render 'ingredient_fields', f: ingredients_fields %>
-<% end %>
-
-<%= f.label :quantity %>
-<%= f.text_field :quantity %>
-<%= f.check_box :key_ingredient %>
-<%= f.label :key_ingredient, "Key Ingredient" %><br>
