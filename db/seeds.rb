@@ -101,4 +101,4 @@ RecipeIngredient.create(recipe_id: 3, ingredient_id: 6, quantity: "To taste", ke
 RecipeIngredient.create(recipe_id: 3, ingredient_id: 7, quantity: "To taste", key_ingredient: false)
 
 
-User.create(email: "heather@heatheryou.com", password: '12345678')
+User.create(email: "heather@heatheryou.com", password: '12345678', admin: true)

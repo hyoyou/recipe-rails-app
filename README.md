@@ -5,7 +5,7 @@ Users can view recipes on the homepage or they can filter it by category. On eac
 
 ## Usage
 
-After cloning the repo, run `bundle install` to install dependencies. To migrate your local database, run `rake db:migrate`. To start the application on your machine, run `rails s`. In a browser, go to http://localhost:3000/ to begin (Note: you may be using a different port. Please update accordingly).
+After cloning the repo, run `bundle install` to install dependencies. To migrate your local database, run `rake db:migrate`. Also, you may run `rake db:seed` to seed the database if you would like. To start the application on your machine, run `rails s`. In a browser, go to http://localhost:3000/ to begin (Note: you may be using a different port. Please update accordingly).
 
 ## Contributing
 
