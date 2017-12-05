@@ -189,3 +189,41 @@ ingredients_attributes.each do |ingredient|
 When I create a recipe with 2/7 ingredients, it creates 5 blank ingredients with 5 blank recipe_ingredients forms for each
 When I create a recipe with 6/7 ingredients, it creates 1 blank ingredient with 5 blank recipe_ingredients forms
 --> Must be saving the blank ingredients and recipe_ingredients
+
+
+<% if !@recipe.ingredients.all.blank? %>
+  Existing Ingredients:<br>
+  <%#= f.fields_for :recipe_ingredients, @recipe.recipe_ingredients do |recipe_ingredients_fields| %>
+    <%#= recipe_ingredients_fields.fields_for :ingredient, @recipe.ingredients do |ingredients_fields| %>
+      <%#= ingredients_fields.label :name %>
+      <%#= ingredients_fields.text_field :name, :readonly => true %>
+      <%#= ingredients_fields.hidden_field :id %>
+
+      <%#= recipe_ingredients_fields.label :quantity %>
+      <%#= recipe_ingredients_fields.text_field :quantity %>
+      <%#= recipe_ingredients_fields.check_box :key_ingredient %>
+      <%#= recipe_ingredients_fields.label :key_ingredient, "Key Ingredient" %>
+      <%#= recipe_ingredients_fields.hidden_field :id %>
+
+      <%#= link_to "Delete", recipe_ingredient_path(@recipe, ingredients_fields.object.id), method: :delete %><br>
+    <%# end %>
+  <%# end %>
+<%# end %>
+<br>
+
+New Ingredient:<br>
+<%# 5.times do %>
+  <%#= f.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |recipe_ingredients_fields| %>
+      <%#= recipe_ingredients_fields.fields_for :ingredient, @recipe.recipe_ingredients.build.build_ingredient do |ingredient_fields| %>
+
+      <%#= ingredient_fields.label :name %>
+      <%#= ingredient_fields.text_field :name %>
+
+      <%#= recipe_ingredients_fields.label :quantity %>
+      <%#= recipe_ingredients_fields.text_field :quantity %>
+      <%#= recipe_ingredients_fields.check_box :key_ingredient %>
+      <%#= recipe_ingredients_fields.label :key_ingredient %><br>
+
+    <%# end %>
+  <%# end %>
+<%# end %>

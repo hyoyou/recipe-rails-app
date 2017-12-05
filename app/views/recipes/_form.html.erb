@@ -21,17 +21,7 @@
 
   <h3>Ingredients</h3>
   <%= f.fields_for :recipe_ingredients do |recipe_ingredients_fields| %>
-
-    <%= recipe_ingredients_fields.fields_for :ingredient do |ingredients_fields| %>
-      <%= ingredients_fields.label :name %>
-      <%= ingredients_fields.text_field :name %>
-    <% end %>
-
-    <%= recipe_ingredients_fields.label :quantity, "Quantity" %>
-    <%= recipe_ingredients_fields.text_field :quantity %>
-    <%= recipe_ingredients_fields.check_box :key_ingredient %>
-    <%= recipe_ingredients_fields.label :key_ingredient, "Key Ingredient" %><br>
-
+    <%= render 'recipe_ingredient_fields', f: recipe_ingredients_fields %>
   <% end %>
 
   <%= f.submit %>

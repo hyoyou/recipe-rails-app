@@ -1,6 +1,0 @@
-<%= f.label :name %>
-<%= f.text_field :name %>
-
-<%= f.fields_for :recipe_ingredients,@recipe. ingredients.build.recipe_ingredients.build do |recipe_ingredient_builder| %>
-  <%= render 'recipe_ingredient_builder', f: recipe_ingredient_builder %>
-<% end %>

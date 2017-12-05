@@ -2,7 +2,6 @@ class RecipeIngredient < ApplicationRecord
   belongs_to :recipe
   belongs_to :ingredient, optional: true
 
-
   def ingredient_attributes=(ingredient_attributes)
     ingredient_attributes.each do |index, ingredient_attribute|
       if ingredient_attribute.is_a?(Hash) && !ingredient_attribute[:name].blank?
