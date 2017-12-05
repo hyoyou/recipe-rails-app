@@ -1,5 +1,3 @@
-<%= link_to "Back to Recipes", recipes_path %>
-
 <h1><%= @recipe.name %></h1>
 
 <%= link_to "Average Rating: ", recipe_ratings_path(@recipe) %><%= ratings_average(@recipe) %><br>

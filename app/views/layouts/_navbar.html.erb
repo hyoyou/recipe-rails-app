@@ -1,7 +1,16 @@
-<% if current_user %>
-  Currently logged in as: <%= current_user.email %>
-  <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
-<% else %>
-  <%= link_to "Sign In", new_user_session_path %>
-  <%= link_to "Sign Up", new_user_registration_path %>
-<% end %>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="nav navbar-nav navbar-left">
+      <%= link_to "Home", recipes_path %>
+    </div>
+    <div class="nav navbar-nav navbar-right">
+      <% if current_user %>
+        Currently logged in as: <%= current_user.email %>
+        <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+      <% else %>
+        <%= link_to "Sign In", new_user_session_path %>
+        <%= link_to "Sign Up", new_user_registration_path %>
+      <% end %>
+    </div>
+  </div>
+</nav>
