@@ -22,17 +22,39 @@
   <h3>Ingredients</h3>
   <% if !@recipe.ingredients.all.blank? %>
     Existing Ingredients:<br>
-    <%= f.fields_for :ingredients, @recipe.ingredients.all do |ingredients_fields| %>
-      <%= render 'ingredient_fields', f: ingredients_fields %>
-      <%= link_to "Delete", recipe_ingredient_path(@recipe, ingredients_fields.object.id), method: :delete %><br>
+    <%= f.fields_for :recipe_ingredients, @recipe.recipe_ingredients do |recipe_ingredients_fields| %>
+      <%# binding.pry %>
+      <%= recipe_ingredients_fields.fields_for :ingredient, @recipe.ingredients do |ingredients_fields| %>
+        <%= ingredients_fields.label :name %>
+        <%= ingredients_fields.text_field :name, :readonly => true %>
+        <%= ingredients_fields.hidden_field :id %>
+
+        <%= recipe_ingredients_fields.label :quantity %>
+        <%= recipe_ingredients_fields.text_field :quantity %>
+        <%= recipe_ingredients_fields.check_box :key_ingredient %>
+        <%= recipe_ingredients_fields.label :key_ingredient, "Key Ingredient" %>
+        <%= recipe_ingredients_fields.hidden_field :id %>
+
+        <%= link_to "Delete", recipe_ingredient_path(@recipe, ingredients_fields.object.id), method: :delete %><br>
+      <% end %>
     <% end %>
   <% end %>
   <br>
 
   New Ingredient:<br>
   <% 5.times do %>
-    <%= f.fields_for :ingredients, @recipe.ingredients.build do |ingredient_builder| %>
-      <%= render 'ingredient_builder', f: ingredient_builder %>
+    <%= f.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |recipe_ingredients_fields| %>
+      <%= recipe_ingredients_fields.fields_for :ingredient, @recipe.recipe_ingredients.build.build_ingredient do |ingredient_fields| %>
+
+        <%= ingredient_fields.label :name %>
+        <%= ingredient_fields.text_field :name %>
+        
+        <%= recipe_ingredients_fields.label :quantity %>
+        <%= recipe_ingredients_fields.text_field :quantity %>
+        <%= recipe_ingredients_fields.check_box :key_ingredient %>
+        <%= recipe_ingredients_fields.label :key_ingredient %><br>
+
+      <% end %>
     <% end %>
   <% end %>
 
