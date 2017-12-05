@@ -20,42 +20,18 @@
   <%= f.collection_select :category_id, Category.all, :id, :name, :prompt => "Please Select One" %><br>
 
   <h3>Ingredients</h3>
-  <% if !@recipe.ingredients.all.blank? %>
-    Existing Ingredients:<br>
-    <%= f.fields_for :recipe_ingredients, @recipe.recipe_ingredients do |recipe_ingredients_fields| %>
-      <%# binding.pry %>
-      <%= recipe_ingredients_fields.fields_for :ingredient, @recipe.ingredients do |ingredients_fields| %>
-        <%= ingredients_fields.label :name %>
-        <%= ingredients_fields.text_field :name, :readonly => true %>
-        <%= ingredients_fields.hidden_field :id %>
+  <%= f.fields_for :recipe_ingredients do |recipe_ingredients_fields| %>
 
-        <%= recipe_ingredients_fields.label :quantity %>
-        <%= recipe_ingredients_fields.text_field :quantity %>
-        <%= recipe_ingredients_fields.check_box :key_ingredient %>
-        <%= recipe_ingredients_fields.label :key_ingredient, "Key Ingredient" %>
-        <%= recipe_ingredients_fields.hidden_field :id %>
-
-        <%= link_to "Delete", recipe_ingredient_path(@recipe, ingredients_fields.object.id), method: :delete %><br>
-      <% end %>
+    <%= recipe_ingredients_fields.fields_for :ingredient do |ingredients_fields| %>
+      <%= ingredients_fields.label :name %>
+      <%= ingredients_fields.text_field :name %>
     <% end %>
-  <% end %>
-  <br>
 
-  New Ingredient:<br>
-  <% 5.times do %>
-    <%= f.fields_for :recipe_ingredients, @recipe.recipe_ingredients.build do |recipe_ingredients_fields| %>
-      <%= recipe_ingredients_fields.fields_for :ingredient, @recipe.recipe_ingredients.build.build_ingredient do |ingredient_fields| %>
+    <%= recipe_ingredients_fields.label :quantity, "Quantity" %>
+    <%= recipe_ingredients_fields.text_field :quantity %>
+    <%= recipe_ingredients_fields.check_box :key_ingredient %>
+    <%= recipe_ingredients_fields.label :key_ingredient, "Key Ingredient" %><br>
 
-        <%= ingredient_fields.label :name %>
-        <%= ingredient_fields.text_field :name %>
-        
-        <%= recipe_ingredients_fields.label :quantity %>
-        <%= recipe_ingredients_fields.text_field :quantity %>
-        <%= recipe_ingredients_fields.check_box :key_ingredient %>
-        <%= recipe_ingredients_fields.label :key_ingredient %><br>
-
-      <% end %>
-    <% end %>
   <% end %>
 
   <%= f.submit %>

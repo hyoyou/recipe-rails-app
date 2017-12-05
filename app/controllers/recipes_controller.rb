@@ -21,9 +21,11 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    10.times { @recipe.recipe_ingredients.build.build_ingredient }
   end
 
   def edit
+    10.times { @recipe.recipe_ingredients.build.build_ingredient }
     if @recipe.user_id != current_user[:id]
       flash[:notice] = "You can only edit your own recipe"
       redirect_to recipes_path
@@ -40,7 +42,6 @@ class RecipesController < ApplicationController
   end
 
   def update
-    #binding.pry
     @recipe.update(recipe_params)
     if @recipe.save
       redirect_to recipe_path(@recipe)
