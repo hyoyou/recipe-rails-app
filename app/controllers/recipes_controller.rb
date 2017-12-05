@@ -35,6 +35,7 @@ class RecipesController < ApplicationController
   def create
     @recipe = current_user.recipes.build(recipe_params)
     if @recipe.save
+      flash[:notice] = "Thank you for adding a new recipe!"
       redirect_to recipe_path(@recipe)
     else
       render :new
@@ -44,6 +45,7 @@ class RecipesController < ApplicationController
   def update
     @recipe.update(recipe_params)
     if @recipe.save
+      flash[:notice] = "Your recipe has been updated."
       redirect_to recipe_path(@recipe)
     else
       render :edit
@@ -53,6 +55,7 @@ class RecipesController < ApplicationController
   def destroy
     if @recipe.user_id == current_user[:id]
       @recipe.destroy
+      flash[:notice] = "Your recipe has been deleted."
       redirect_to recipes_path
     else
       redirect_to root_path

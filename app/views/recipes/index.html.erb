@@ -7,13 +7,13 @@
     <% @recipes.each do |recipe| %>
       <div class="column">
       <h3><%= link_to recipe.name, recipe_path(recipe) %></h3><br>
-      <%# key_ingredient_array = recipe.recipe_ingredients.to_a %>
-      <%# key_ingredient_array.each do |ingredient| %>
-        <%# if ingredient.key_ingredient == true %>
-          <%# key_ingredient = Ingredient.find(ingredient.ingredient_id) %>
-          <strong>Key Ingredient:</strong> <%#= key_ingredient.name %><br>
-        <%# end %>
-      <%# end %>
+      <% key_ingredient_array = recipe.recipe_ingredients.to_a %>
+      <% key_ingredient_array.each do |ingredient| %>
+        <% if ingredient.key_ingredient == true %>
+          <% key_ingredient = Ingredient.find(ingredient.ingredient_id) %>
+          <strong>Key Ingredient:</strong> <%= key_ingredient.name %><br>
+        <% end %>
+      <% end %>
       <strong>Category:</strong> <%= recipe.category.name %><br>
       </div>
     <% end %>
