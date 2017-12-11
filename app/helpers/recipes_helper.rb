@@ -1,4 +1,5 @@
 module RecipesHelper
+
   def find_key_ingredients(recipe)
     key_ingredient_array = RecipeIngredient.where(recipe_id: recipe.id, key_ingredient: true).to_a
     html = ''
@@ -8,4 +9,5 @@ module RecipesHelper
     end
     html.html_safe
   end
+  
 end

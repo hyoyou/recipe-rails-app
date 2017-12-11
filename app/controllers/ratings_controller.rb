@@ -25,4 +25,5 @@ class RatingsController < ApplicationController
   def rating_params
     params.require(:rating).permit(:rating, :user_id, :recipe_id)
   end
+  
 end

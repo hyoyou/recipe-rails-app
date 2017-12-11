@@ -1,4 +1,5 @@
 class IngredientsController < ApplicationController
+
   def index
     @ingredients = Ingredient.all
   end
@@ -15,4 +16,5 @@ class IngredientsController < ApplicationController
       redirect_to ingredients_path
     end
   end
+  
 end

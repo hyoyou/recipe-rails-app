@@ -6,4 +6,5 @@ class Rating < ApplicationRecord
   validates :recipe_id, uniqueness: { scope: :user_id, message: "You have already rated this recipe." }
 
   scope :most_recent, -> { order("created_at DESC") }
+  
 end
