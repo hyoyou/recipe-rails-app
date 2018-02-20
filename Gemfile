@@ -40,6 +40,9 @@ gem 'dotenv-rails'
 gem 'bootstrap-sass', '3.3.6'
 gem "paperclip", "~> 5.2.0"
 
+# jQuery project
+gem 'active_model_serializers'
+
 # Use Cocoon for nested forms
 #gem 'cocoon'
 

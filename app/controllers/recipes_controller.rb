@@ -17,6 +17,7 @@ class RecipesController < ApplicationController
 
   def show
     @ingredients = @recipe.ingredients.all
+    render json: @recipe
   end
 
   def new
