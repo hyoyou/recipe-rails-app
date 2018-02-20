@@ -12,12 +12,19 @@ class RecipesController < ApplicationController
       @recipes
     else
       @recipes = Recipe.all
+      respond_to do |f|
+        f.html
+        f.json { render json: @recipes }
+      end
     end
   end
 
   def show
     @ingredients = @recipe.ingredients.all
-    render json: @recipe
+    respond_to do |f|
+      f.html
+      f.json { render json: @recipe }
+    end
   end
 
   def new
