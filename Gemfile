@@ -39,9 +39,11 @@ gem 'omniauth-github'
 gem 'dotenv-rails'
 gem 'bootstrap-sass', '3.3.6'
 gem "paperclip", "~> 5.2.0"
+gem 'pry'
 
 # jQuery project
 gem 'active_model_serializers'
+gem 'jquery-rails'
 
 # Use Cocoon for nested forms
 #gem 'cocoon'
