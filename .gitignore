@@ -22,4 +22,5 @@
 
 .byebug_history
 .env
+.jshintrc
 NOTES.md
