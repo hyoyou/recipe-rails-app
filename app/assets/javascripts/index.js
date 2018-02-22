@@ -8,13 +8,14 @@ function attachEventListeners() {
 
     $.get('/recipes.json', function(data) {
       //console.log(data);
+      $('.recipe-row').html('');
       data.forEach(function(recipe) {
         //console.log(recipe.id)
         var newRecipe = new Recipe(recipe.id, recipe.name, recipe.description);
         var formattedRecipe = newRecipe.formatRecipe();
-        $('.recipe-container').html('');
-        console.log(formattedRecipe)
-        //$('.recipe-container').append(formattedRecipe);
+        //
+        //console.log(formattedRecipe)
+        $('.recipe-row').append(formattedRecipe);
       })
     })
   })
