@@ -11,8 +11,8 @@ function attachEventListeners() {
       $('.recipe-row').html('');
       data.forEach(function(recipe) {
         //console.log(recipe)
-        debugger
-        var newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category_id);
+        //debugger
+        var newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category);
         var formattedRecipe = newRecipe.formatRecipe();
         //console.log(formattedRecipe)
         $('.recipe-row').append(formattedRecipe);
@@ -21,12 +21,12 @@ function attachEventListeners() {
   })
 }
 
-function Recipe(id, name, description, recipe_ingredients, category_id) {
+function Recipe(id, name, description, recipe_ingredients, category) {
   this.id = id;
   this.name = name;
   this.description = description;
   this.recipe_ingredients = recipe_ingredients;
-  this.category_id = category_id
+  this.category = category
 }
 
 Recipe.prototype.formatRecipe = function() {
@@ -53,7 +53,7 @@ Recipe.prototype.formatRecipe = function() {
 
   //debugger
   recipeHtml += '<p><strong>Key Ingredient: </strong>' + key_ingredient + '</p>';
-  recipeHtml += '<p><strong>Category: </strong>' + this.category_id + '</p>';
+  recipeHtml += '<p><strong>Category: </strong>' + this.category.name + '</p>';
 
   return recipeHtml;
 }
