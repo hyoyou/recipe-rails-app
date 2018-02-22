@@ -39,7 +39,6 @@ Recipe.prototype.formatRecipe = function() {
   function findKeyIngredient(rcp_ing) {
     var key_ing = "";
     rcp_ing.forEach(function(ingredient) {
-
       if (ingredient.key_ingredient === true) {
         //debugger
         key_ing += ingredient.ingredient.name
