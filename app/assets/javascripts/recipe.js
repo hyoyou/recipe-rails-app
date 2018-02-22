@@ -5,7 +5,7 @@ $(document).ready(function() {
 function attachEventListeners() {
   $('.all-recipes').on('click', function(e) {
     e.preventDefault();
-
+    history.pushState(null, null, 'recipes')
     $.get('/recipes.json', function(data) {
       //console.log(data);
       $('#recipes-container').html('');
