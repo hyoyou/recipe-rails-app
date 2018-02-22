@@ -1,10 +1,13 @@
 $(document).ready(function() {
-  bindClick();
+  attachEventListeners();
 })
 
-function bindClick() {
+function attachEventListeners() {
   $('.all-recipes').on('click', function(e) {
     e.preventDefault();
-    console.log('Home button was clicked!')
+
+    $.get('/recipes.json', function(data) {
+      console.log(data);
+    })
   })
 }
