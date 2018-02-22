@@ -1,40 +1,38 @@
-<div class='recipe-row'>
-  <h1><%= @recipe.name %></h1>
+<h1><%= @recipe.name %></h1>
 
-  <%= link_to image_tag(@recipe.image.url(:medium)), @recipe.image.url %><br>
+<%= link_to image_tag(@recipe.image.url(:medium)), @recipe.image.url %><br>
 
-  <%= link_to "Average Rating: ", recipe_ratings_path(@recipe) %><%= ratings_average(@recipe) %><br>
+<%= link_to "Average Rating: ", recipe_ratings_path(@recipe) %><%= ratings_average(@recipe) %><br>
 
-  <% if current_user %>
-    <%= rate_recipe(@recipe) %>
-  <% end %><br><br>
+<% if current_user %>
+  <%= rate_recipe(@recipe) %>
+<% end %><br><br>
 
-  <p><%= @recipe.description %></p>
+<p><%= @recipe.description %></p>
 
-  Category: <%= @recipe.category.name %><br><br>
+Category: <%= @recipe.category.name %><br><br>
 
-  Ingredients:
-  <table>
+Ingredients:
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Quantity</th>
+  </tr>
+  <% @ingredients.each do |ingredient| %>
     <tr>
-      <th>Name</th>
-      <th>Quantity</th>
+      <td><%= ingredient.name %></td>
+      <td>
+      <% recipe_ingredient = RecipeIngredient.where(recipe_id: @recipe.id, ingredient_id: ingredient.id) %>
+      <%= recipe_ingredient.first.quantity %>
+      </td>
     </tr>
-    <% @ingredients.each do |ingredient| %>
-      <tr>
-        <td><%= ingredient.name %></td>
-        <td>
-        <% recipe_ingredient = RecipeIngredient.where(recipe_id: @recipe.id, ingredient_id: ingredient.id) %>
-        <%= recipe_ingredient.first.quantity %>
-        </td>
-      </tr>
-    <% end %>
-  </table><br>
-
-  <% if current_user && @recipe.user_id == current_user.id %>
-    <%= link_to "Edit", edit_recipe_path(@recipe) %>
-    <%= link_to "Delete", recipe_path(@recipe), method: :delete %>
   <% end %>
-  <br><br>
+</table><br>
 
-  Have <%= find_key_ingredients(@recipe) %> left over?
-</div>
+<% if current_user && @recipe.user_id == current_user.id %>
+  <%= link_to "Edit", edit_recipe_path(@recipe) %>
+  <%= link_to "Delete", recipe_path(@recipe), method: :delete %>
+<% end %>
+<br><br>
+
+Have <%= find_key_ingredients(@recipe) %> left over?

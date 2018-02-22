@@ -3,7 +3,7 @@
 <%= link_to "View by Category", categories_path %>
 
 <div class="container">
-  <div class="recipe-row">
+  <div class="row">
     <% @recipes.each do |recipe| %>
       <div class="column">
       <h3><%= link_to recipe.name, recipe_path(recipe) %></h3><br>
