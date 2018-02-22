@@ -22,8 +22,11 @@ function attachEventListeners() {
     // attach event listener to a parent to allow any current and future show_recipe classes attach
     $(document).on('click', '.show_recipe', function(e) {
       e.preventDefault();
-      alert('click');
-      //$.get(`/recipes/${this.id}`)
+
+      let id = this.attributes["data-id"].value;
+      $.get(`/recipes/${id}.json`, function(data){
+        console.log(data);
+      });
     });
   });
 }
