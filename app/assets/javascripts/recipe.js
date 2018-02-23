@@ -12,7 +12,7 @@ function attachEventListeners() {
       data.forEach(function(recipe) {
         //console.log(recipe)
         //debugger
-        var newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category);
+        var newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category, recipe.image);
         var formattedIndex = newRecipe.formatIndex();
         //console.log(formattedRecipe)
         $('#recipes-container').append(formattedIndex);
@@ -28,7 +28,7 @@ function attachEventListeners() {
         //console.log(recipe);
         //debugger
         $('#recipes-container').html('');
-        let newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category);
+        let newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category, recipe.image);
         let formattedShow = newRecipe.formatShow();
         //debugger
         $('#recipes-container').append(formattedShow);
@@ -37,12 +37,13 @@ function attachEventListeners() {
   });
 }
 
-function Recipe(id, name, description, recipe_ingredients, category) {
+function Recipe(id, name, description, recipe_ingredients, category, image) {
   this.id = id;
   this.name = name;
   this.description = description;
   this.recipe_ingredients = recipe_ingredients;
   this.category = category;
+  this.image = image;
 }
 
 Recipe.prototype.formatIndex = function() {
@@ -79,6 +80,8 @@ Recipe.prototype.formatShow = function() {
   var recipeHtml = '';
   //debugger
   recipeHtml += `<h1>` + this.name + `</h1>`;
+  //debugger
+  recipeHtml += `<img src="` + this.image + `">`;
   recipeHtml += `<p>` + this.description + `</p>`;
   recipeHtml += `<p><strong>Category: </strong>` + this.category.name + `</p>`;
 
