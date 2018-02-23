@@ -82,5 +82,14 @@ Recipe.prototype.formatShow = function() {
   recipeHtml += `<p>` + this.description + `</p>`;
   recipeHtml += `<p><strong>Category: </strong>` + this.category.name + `</p>`;
 
+  recipeHtml += `<table><tr><th>Name</th><th>Quantity</th>`;
+  var rIngredients = this.recipe_ingredients;
+  for (var i=0; i < rIngredients.length; i++) {
+    //console.log(rIngredients[i]);
+    recipeHtml += `<tr><td>${rIngredients[i].ingredient.name}</td>`;
+    recipeHtml += `<td>${rIngredients[i].quantity}</td></tr>`;
+  }
+  recipeHtml += `</table>`;
+
   return recipeHtml;
 };
