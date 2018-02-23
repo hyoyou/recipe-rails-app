@@ -18,21 +18,38 @@ function attachEventListeners() {
         $('#recipes-container').append(formattedIndex);
       });
     });
+  });
 
     // attach event listener to a parent to allow any current and future show_recipe classes attach
-    $(document).on('click', '.show_recipe', function(e) {
-      e.preventDefault();
-      let id = this.attributes["data-id"].value;
-      history.pushState(null, null, `recipes/${id}`);
-      $.get(`/recipes/${id}.json`, function(recipe){
-        //console.log(recipe);
-        //debugger
-        $('#recipes-container').html('');
-        let newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category, recipe.image);
-        let formattedShow = newRecipe.formatShow();
-        //debugger
-        $('#recipes-container').append(formattedShow);
-      });
+  $(document).on('click', '.show_recipe', function(e) {
+    e.preventDefault();
+    let id = this.attributes["data-id"].value;
+    history.pushState(null, null, `recipes/${id}`);
+    $.get(`/recipes/${id}.json`, function(recipe){
+      //console.log(recipe);
+      //debugger
+      $('#recipes-container').html('');
+      let newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category, recipe.image);
+      let formattedShow = newRecipe.formatShow();
+      //debugger
+      $('#recipes-container').append(formattedShow);
+    });
+  });
+
+
+  $(document).on('click', '.next-recipe', function(e) {
+    e.preventDefault();
+    //debugger
+    let id = parseInt(this.attributes["data-id"].value);
+    //console.log(id);
+    $.get(`/recipes/${id + 1}.json`, function(recipe){
+      //console.log(recipe);
+      //debugger
+      $('#recipes-container').html('');
+      let newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category, recipe.image);
+      let formattedShow = newRecipe.formatShow();
+      //debugger
+      $('#recipes-container').append(formattedShow);
     });
   });
 }
@@ -79,6 +96,8 @@ Recipe.prototype.formatIndex = function() {
 Recipe.prototype.formatShow = function() {
   var recipeHtml = '';
   //debugger
+  recipeHtml += `<button data-id=${this.id} class="next-recipe">Next Recipe</button>`;
+
   recipeHtml += `<h1>` + this.name + `</h1>`;
   //debugger
   recipeHtml += `<img src="` + this.image + `">`;
@@ -93,6 +112,5 @@ Recipe.prototype.formatShow = function() {
     recipeHtml += `<td>${rIngredients[i].quantity}</td></tr>`;
   }
   recipeHtml += `</table>`;
-
   return recipeHtml;
 };
