@@ -5,7 +5,7 @@ $(document).ready(function() {
 function attachEventListeners() {
   $('.all-recipes').on('click', function(e) {
     e.preventDefault();
-    history.pushState(null, null, 'recipes');
+    history.pushState(null, null, '/recipes');
     $.get('/recipes.json', function(data) {
       //console.log(data);
       $('#recipes-container').html('');
@@ -24,7 +24,7 @@ function attachEventListeners() {
   $(document).on('click', '.show_recipe', function(e) {
     e.preventDefault();
     let id = this.attributes["data-id"].value;
-    history.pushState(null, null, `recipes/${id}`);
+    history.pushState(null, null, `/recipes/${id}`);
     $.get(`/recipes/${id}.json`, function(recipe){
       //console.log(recipe);
       //debugger
@@ -41,7 +41,7 @@ function attachEventListeners() {
     e.preventDefault();
     //debugger
     let id = parseInt(this.attributes["data-id"].value);
-    //console.log(id);
+    history.pushState(null, null, `/recipes/${id + 1}`);
     $.get(`/recipes/${id + 1}.json`, function(recipe){
       //console.log(recipe);
       //debugger
