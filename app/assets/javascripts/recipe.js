@@ -22,10 +22,16 @@ function attachEventListeners() {
     // attach event listener to a parent to allow any current and future show_recipe classes attach
     $(document).on('click', '.show_recipe', function(e) {
       e.preventDefault();
-
       let id = this.attributes["data-id"].value;
-      $.get(`/recipes/${id}.json`, function(data){
-        console.log(data);
+      history.pushState(null, null, `recipes/${id}`);
+      $.get(`/recipes/${id}.json`, function(recipe){
+        //console.log(recipe);
+        //debugger
+        $('#recipes-container').html('');
+        let newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category);
+        let formattedShow = newRecipe.formatShow();
+        //debugger
+        $('#recipes-container').append(formattedShow);
       });
     });
   });
@@ -70,5 +76,11 @@ Recipe.prototype.formatIndex = function() {
 
 
 Recipe.prototype.formatShow = function() {
+  var recipeHtml = '';
+  //debugger
+  recipeHtml += `<h1>` + this.name + `</h1>`;
+  recipeHtml += `<p>` + this.description + `</p>`;
+  recipeHtml += `<p><strong>Category: </strong>` + this.category.name + `</p>`;
 
+  return recipeHtml;
 };
