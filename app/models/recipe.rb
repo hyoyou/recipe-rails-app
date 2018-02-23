@@ -15,6 +15,7 @@ class Recipe < ApplicationRecord
 
   def next
     #binding.pry
-    self.class.where("id > ?", id).first
+    recipe = self.class.where("id > ?", id).first
+    recipe ? recipe : Recipe.first
   end
 end
