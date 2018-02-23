@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_recipe, only: [:show, :edit, :update, :destroy, :next]
 
   def index
     if params[:ingredient_id]
@@ -70,14 +70,19 @@ class RecipesController < ApplicationController
     end
   end
 
-  private
-  def set_recipe
-    @recipe = Recipe.find(params[:id])
+  def next
+    @next_recipe = @recipe.next
+    render json: @next_recipe
   end
 
-  def recipe_params
-    params.require(:recipe).permit(:name, :description, :user_id, :category_id, :image, ingredient_ids: [],
-                                   recipe_ingredients_attributes: [:id, :quantity, :key_ingredient, ingredient_attributes: [:id, :name]])
-  end
+  private
+    def set_recipe
+      @recipe = Recipe.find(params[:id])
+    end
+
+    def recipe_params
+      params.require(:recipe).permit(:name, :description, :user_id, :category_id, :image, ingredient_ids: [],
+                                     recipe_ingredients_attributes: [:id, :quantity, :key_ingredient, ingredient_attributes: [:id, :name]])
+    end
 
 end

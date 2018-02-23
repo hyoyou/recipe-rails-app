@@ -41,8 +41,8 @@ function attachEventListeners() {
     e.preventDefault();
     //debugger
     let id = parseInt(this.attributes["data-id"].value);
-    history.pushState(null, null, `/recipes/${id + 1}`);
-    $.get(`/recipes/${id + 1}.json`, function(recipe){
+    history.pushState(null, null, `/recipes/${id + 1}/next`);
+    $.get(`/recipes/${id}/next`, function(recipe){
       //console.log(recipe);
       //debugger
       $('#recipes-container').html('');

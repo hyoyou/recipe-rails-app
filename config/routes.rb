@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   resources :recipes
 
+  get '/recipes/:id/next', to: 'recipes#next'
+
   #delete ingredients from recipe (only deletes key_ingredient)
   resources :recipes, only: [:edit] do
     resources :ingredients, only: [:destroy]
