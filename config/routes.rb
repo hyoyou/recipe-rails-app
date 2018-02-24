@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :ingredients
 
   #show recipes by key_ingredient
@@ -17,6 +18,10 @@ Rails.application.routes.draw do
 
   resources :recipes, only: [:show] do
     resources :ratings, only: [:index, :new, :create]
+  end
+
+  resources :recipes, only: [:show] do
+    resources :comments, only: [:index, :new, :create]
   end
 
   resources :categories

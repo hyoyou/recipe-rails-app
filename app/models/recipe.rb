@@ -4,6 +4,7 @@ class Recipe < ApplicationRecord
   has_many :recipe_ingredients, dependent: :destroy
   has_many :ingredients, through: :recipe_ingredients
   has_many :ratings
+  has_many :comments
 
   validates :name, presence: true
   validates :description, presence: true
