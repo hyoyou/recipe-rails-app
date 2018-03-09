@@ -56,12 +56,10 @@ function attachEventListeners() {
   $("a.load_comments").on("click", function(e) {
     //debugger
     e.preventDefault();
-    $.ajax({
-      method: "GET",
-      url: this.href
-    }).done(function(response){
-      $("div.comments").html(response);
-    });
+    $.get(this.href).done(function(response) {
+      $("div.comments").html(response)
+    })
+
   });
 }
 
