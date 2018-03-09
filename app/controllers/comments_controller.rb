@@ -3,7 +3,10 @@ class CommentsController < ApplicationController
 
   def index
     @comments = @recipe.comments
-    render 'comments/index', :layout => false
+    respond_to do |f|
+      f.html {render 'index.html', :layout => false}
+      f.json {render json: @comments}
+    end
   end
 
   def new
@@ -13,9 +16,10 @@ class CommentsController < ApplicationController
   def create
     @comment = @recipe.comments.build(comments_params)
     if @comment.save
-      redirect_to recipe_path
+      #@ingredients = @recipe.ingredients.all
+      redirect_to @recipe
     else
-      redirect_to new_recipe_comment_path(@recipe)
+      render "recipes/show"
     end
   end
 
@@ -25,6 +29,6 @@ class CommentsController < ApplicationController
   end
 
   def comments_params
-    params.require(:comment).permit(:body)
+    params.require(:comment).permit(:body, :recipe_id)
   end
 end
