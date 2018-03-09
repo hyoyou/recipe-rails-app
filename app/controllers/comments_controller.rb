@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
 
   def index
     @comments = @recipe.comments
+    render 'comments/index', :layout => false
   end
 
   def new

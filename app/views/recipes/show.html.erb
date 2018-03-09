@@ -29,7 +29,9 @@ Ingredients:
   <% end %>
 </table><br>
 
-<p><%= link_to "Show Comments for This Recipe", recipe_comments_path(@recipe) %></p>
+<p><%= link_to "Show Comments for This Recipe", recipe_comments_path(@recipe), :class => "load_comments" %></p>
+<div class="comments">
+</div>
 
 <% if current_user && @recipe.user_id == current_user.id %>
   <%= link_to "Edit", edit_recipe_path(@recipe) %>

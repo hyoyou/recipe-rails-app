@@ -52,6 +52,17 @@ function attachEventListeners() {
       $('#recipes-container').append(formattedShow);
     });
   });
+
+  $("a.load_comments").on("click", function(e) {
+    //debugger
+    e.preventDefault();
+    $.ajax({
+      method: "GET",
+      url: this.href
+    }).done(function(response){
+      $("div.comments").html(response);
+    });
+  });
 }
 
 function Recipe(id, name, description, recipe_ingredients, category, image) {
