@@ -15,9 +15,11 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @recipe.comments.build(comments_params)
+    @comment.user = current_user
+    #binding.pry
     if @comment.save
       #@ingredients = @recipe.ingredients.all
-      redirect_to @recipe
+      render 'comments/show', :layout => false
     else
       render "recipes/show"
     end

@@ -1,5 +1,17 @@
 <h1><%= @recipe.name %></h1>
 
+<% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
 <%= link_to image_tag(@recipe.image.url(:medium)), @recipe.image.url %><br>
 
 <%= link_to "Average Rating: ", recipe_ratings_path(@recipe) %><%= ratings_average(@recipe) %><br>
@@ -31,7 +43,7 @@ Ingredients:
 
 <p><%= link_to "Show Comments for This Recipe", recipe_comments_path(@recipe), :class => "load_comments" %></p>
 
-<%= form_for(@comment, :url => recipe_comments_path(@recipe)) do |f| %>
+<%= form_for([@recipe, @comment]) do |f| %>
   <%= f.text_area :body %>
   <p><%= f.submit %></p>
 <% end %>

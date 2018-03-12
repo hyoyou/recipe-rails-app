@@ -67,6 +67,19 @@ function attachEventListeners() {
       });
     });
   });
+
+  $("#new_comment").on("submit", function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: ($("input[name='_method']").val() || this.method),
+      url: this.action,
+      data: $(this).serialize(),
+      success: function(response){
+        $("#comment_body").val("");
+        $("div.comments ol").append(response);
+      }
+    });
+  });
 }
 
 function Recipe(id, name, description, recipe_ingredients, category, image) {
