@@ -49,7 +49,9 @@ Ingredients:
 <div class="comments">
   <ol>
     <% @recipe.comments.each do |comment| %>
-      <li><%= comment.body %></li>
+      <% if comment.body %>
+        <li><%= comment.body %></li>
+      <% end %>
     <% end %>
   </ol>
 </div>

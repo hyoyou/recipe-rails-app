@@ -52,7 +52,7 @@ function attachEventListeners() {
       $('#recipes-container').append(formattedShow);
     });
   });
-  
+
   $("#new_comment").on("submit", function(e) {
     e.preventDefault();
     $.ajax({
@@ -61,7 +61,7 @@ function attachEventListeners() {
       data: $(this).serialize(),
       success: function(response){
         $("#comment_body").val("");
-        $("div.comments ol").append(response);
+        $("div.comments ol").append(`<li>` + response + `</li>`);
       }
     });
   });
