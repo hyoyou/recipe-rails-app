@@ -128,6 +128,7 @@ Recipe.prototype.formatShow = function() {
   }
   recipeHtml += `</table>`;
   recipeHtml += `<form class="new_comment" id="new_comment" action="/recipes/${this.id}/comments" method="post">
+                <input type="hidden" name="authenticity_token" value=${('meta[name="csrf-token"]').attr('content')}/>
                 <textarea name="comment[body]" id="comment_body"></textarea>
                 <p><input type="submit" value="Create Comment"></p>
                 </form>`;
