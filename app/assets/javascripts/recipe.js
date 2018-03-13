@@ -29,7 +29,7 @@ function attachEventListeners() {
       //console.log(recipe);
       //debugger
       $('#recipes-container').html('');
-      let newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category, recipe.image);
+      let newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category, recipe.image, recipe.comments);
       let formattedShow = newRecipe.formatShow();
       //debugger
       $('#recipes-container').append(formattedShow);
@@ -46,7 +46,7 @@ function attachEventListeners() {
       //console.log(recipe);
       //debugger
       $('#recipes-container').html('');
-      let newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category, recipe.image);
+      let newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category, recipe.image, recipe.comments);
       let formattedShow = newRecipe.formatShow();
       //debugger
       $('#recipes-container').append(formattedShow);
@@ -59,6 +59,7 @@ function attachEventListeners() {
       type: ($("input[name='_method']").val() || this.method),
       url: this.action,
       data: $(this).serialize(),
+      //'authenticity_token': $("input[name='authenticity_token']").val()
       success: function(response){
         $("#comment_body").val("");
         $("div.comments ol").append(`<li>` + response + `</li>`);
@@ -67,13 +68,14 @@ function attachEventListeners() {
   });
 }
 
-function Recipe(id, name, description, recipe_ingredients, category, image) {
+function Recipe(id, name, description, recipe_ingredients, category, image, comments) {
   this.id = id;
   this.name = name;
   this.description = description;
   this.recipe_ingredients = recipe_ingredients;
   this.category = category;
   this.image = image;
+  this.comments = comments;
 }
 
 Recipe.prototype.formatIndex = function() {
@@ -125,5 +127,9 @@ Recipe.prototype.formatShow = function() {
     recipeHtml += `<td>${rIngredients[i].quantity}</td></tr>`;
   }
   recipeHtml += `</table>`;
+  recipeHtml += `<form class="new_comment" id="new_comment" action="/recipes/${this.id}/comments" method="post">
+                <textarea name="comment[body]" id="comment_body"></textarea>
+                <p><input type="submit" value="Create Comment"></p>
+                </form>`;
   return recipeHtml;
 };
