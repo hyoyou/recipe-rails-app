@@ -41,8 +41,6 @@ Ingredients:
   <% end %>
 </table><br>
 
-<p><%= link_to "Show Comments for This Recipe", recipe_comments_path(@recipe), :class => "load_comments" %></p>
-
 <%= form_for([@recipe, @comment]) do |f| %>
   <%= f.text_area :body %>
   <p><%= f.submit %></p>

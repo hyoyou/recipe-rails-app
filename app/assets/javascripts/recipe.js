@@ -52,22 +52,7 @@ function attachEventListeners() {
       $('#recipes-container').append(formattedShow);
     });
   });
-
-  $("a.load_comments").on("click", function(e) {
-    //debugger
-    e.preventDefault();
-    $.get(this.href).done(function(json) {
-      // clear the ol
-      $("div.comments ol").html("");
-
-      // iterate over each comment within json
-      json.forEach(function(comment) {
-        // append each comment to an li
-        $("div.comments ol").append("<li>" + comment.body + "</li>");
-      });
-    });
-  });
-
+  
   $("#new_comment").on("submit", function(e) {
     e.preventDefault();
     $.ajax({
