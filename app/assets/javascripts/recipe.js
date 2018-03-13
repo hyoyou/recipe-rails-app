@@ -57,12 +57,17 @@ function attachEventListeners() {
     e.preventDefault();
     $.ajax({
       type: ($("input[name='_method']").val() || this.method),
+      //'post'
       url: this.action,
       data: $(this).serialize(),
-      //'authenticity_token': $("input[name='authenticity_token']").val()
       success: function(response){
+        //console.log(response);
+        alert('Thank you for your comment!');
         $("#comment_body").val("");
         $("div.comments ol").append(`<li>` + response + `</li>`);
+      },
+      error: function (response) {
+        console.log(response);
       }
     });
   });
@@ -127,10 +132,13 @@ Recipe.prototype.formatShow = function() {
     recipeHtml += `<td>${rIngredients[i].quantity}</td></tr>`;
   }
   recipeHtml += `</table>`;
+  recipeHtml += `<h3>Comments for this Recipe:</h3>`;
   recipeHtml += `<form class="new_comment" id="new_comment" action="/recipes/${this.id}/comments" method="post">
-                <input type="hidden" name="authenticity_token" value=${('meta[name="csrf-token"]').attr('content')}/>
+                <input type="hidden" name="authenticity_token" value="Qb6Bk4rwHnvLFF4GohnwME9krJ4lerevU4VDT3sjNzdKlNhtk3Tw2UT9JWxEWNK44OFjY7NveaWsrBZy1GWBkw==">
                 <textarea name="comment[body]" id="comment_body"></textarea>
                 <p><input type="submit" value="Create Comment"></p>
                 </form>`;
   return recipeHtml;
 };
+
+//<ActionController::Parameters {"utf8"=>"✓", "authenticity_token"=>"Qb6Bk4rwHnvLFF4GohnwME9krJ4lerevU4VDT3sjNzdKlNhtk3Tw2UT9JWxEWNK44OFjY7NveaWsrBZy1GWBkw==", "comment"=><ActionController::Parameters {"body"=>"testt"} permitted: false>, "controller"=>"comments", "action"=>"create", "recipe_id"=>"1"} permitted: false>
