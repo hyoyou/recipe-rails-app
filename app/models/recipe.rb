@@ -11,7 +11,7 @@ class Recipe < ApplicationRecord
 
   accepts_nested_attributes_for :recipe_ingredients, allow_destroy: true, :reject_if => proc { |attribute| attribute[:quantity].blank? }
 
-  has_attached_file :image, styles: { small: "64x64", medium: "100x100", large: "200x200" }
+  has_attached_file :image, styles: { small: "64x64", medium: "200x200", large: "600x600" }
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   def next
