@@ -31,7 +31,7 @@ Ingredients:
 
 <%= form_for([@recipe, @comment]) do |f| %>
   <%= f.text_area :body %>
-  <p><%= f.submit %></p>
+  <p><%= f.submit 'Add Comment', :class => 'submit_comment' %></p>
 <% end %>
 
 <div class="comments">

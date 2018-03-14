@@ -1,5 +1,6 @@
 $(document).ready(function() {
   attachEventListeners();
+  submitComment();
 });
 
 function attachEventListeners() {
@@ -53,8 +54,23 @@ function attachEventListeners() {
     });
   });
 
+  //$(document).on('submit', '.new-comment', function(e) {
+  //  alert("I've been clicked!");
+  //  e.preventDefault();
+  //});
+
+}
+
+function submitComment() {
   $("#new_comment").on("submit", function(e) {
     e.preventDefault();
+    //data = {
+    //  'authenticity_token': $("input[name='authenticity_token']").val(),
+    //  'comment': {
+    //    'body': $("#comment_body").val()
+    //  }
+    //};
+
     $.ajax({
       type: ($("input[name='_method']").val() || this.method),
       //'post'
@@ -62,9 +78,10 @@ function attachEventListeners() {
       data: $(this).serialize(),
       success: function(response){
         //console.log(response);
-        alert('Thank you for your comment!');
+        //alert('Thank you for your comment!');
         $("#comment_body").val("");
         $("div.comments ol").append(`<li>` + response + `</li>`);
+        $(".submit_comment").val("Thanks for your comment!");
       },
       error: function (response) {
         console.log(response);
@@ -132,13 +149,8 @@ Recipe.prototype.formatShow = function() {
     recipeHtml += `<td>${rIngredients[i].quantity}</td></tr>`;
   }
   recipeHtml += `</table>`;
-  recipeHtml += `<h3>Comments for this Recipe:</h3>`;
-  recipeHtml += `<form class="new_comment" id="new_comment" action="/recipes/${this.id}/comments" method="post">
-                <input type="hidden" name="authenticity_token" value="Qb6Bk4rwHnvLFF4GohnwME9krJ4lerevU4VDT3sjNzdKlNhtk3Tw2UT9JWxEWNK44OFjY7NveaWsrBZy1GWBkw==">
-                <textarea name="comment[body]" id="comment_body"></textarea>
-                <p><input type="submit" value="Create Comment"></p>
-                </form>`;
   return recipeHtml;
 };
+//<input type="hidden" name="authenticity_token" value="Qb6Bk4rwHnvLFF4GohnwME9krJ4lerevU4VDT3sjNzdKlNhtk3Tw2UT9JWxEWNK44OFjY7NveaWsrBZy1GWBkw==">
 
 //<ActionController::Parameters {"utf8"=>"✓", "authenticity_token"=>"Qb6Bk4rwHnvLFF4GohnwME9krJ4lerevU4VDT3sjNzdKlNhtk3Tw2UT9JWxEWNK44OFjY7NveaWsrBZy1GWBkw==", "comment"=><ActionController::Parameters {"body"=>"testt"} permitted: false>, "controller"=>"comments", "action"=>"create", "recipe_id"=>"1"} permitted: false>
