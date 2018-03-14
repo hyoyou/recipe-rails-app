@@ -55,6 +55,19 @@ p {
   width: 33.33%;
 }
 
+.nav {
+  padding: 15px 10px;
+}
+
+.nav.space{
+  display: inline-block;
+  padding: 0px 10px;
+}
+
+.nav a:hover {
+  font-weight: bold;
+}
+
 img {
     display: block;
     margin: auto;

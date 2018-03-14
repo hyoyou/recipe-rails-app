@@ -1,8 +1,10 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="nav navbar-nav navbar-left">
-      <%= link_to "Home", recipes_path %>
-      <%= link_to "Quick View Recipes", recipes_path, class: "all-recipes" %>
+      <%= link_to "Recipes", recipes_path %>
+      <div class="nav space">
+        <%= link_to "Quick View Recipe Cards", recipes_path, class: "all-recipes" %>
+      </div>
     </div>
     <div class="nav navbar-nav navbar-right">
       <% if current_user %>

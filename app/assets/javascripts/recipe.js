@@ -84,24 +84,24 @@ function Recipe(id, name, description, recipe_ingredients, category, image, comm
 Recipe.prototype.formatIndex = function() {
   let recipeHtml = '';
 
-  recipeHtml += `<h3><a href=/recipes/${this.id} + data-id=${this.id} + class=show_recipe>` + this.name + `</a></h3>`;
+  recipeHtml += `<div class="column"><h3><a href=/recipes/${this.id} + data-id=${this.id} + class=show_recipe>` + this.name + `</a></h3></div>`;
+
   //move out to separate function?
-
-  let rcp_ing = this.recipe_ingredients;
-
-  function findKeyIngredient(rcp_ing) {
-    var key_ing = "";
-    rcp_ing.forEach(function(ingredient) {
-      if (ingredient.key_ingredient === true) {
-        key_ing += ingredient.ingredient.name;
-      }
-    });
-    return key_ing;
-  }
-  var key_ingredient = findKeyIngredient(rcp_ing);
-
-  recipeHtml += '<p><strong>Key Ingredient: </strong>' + key_ingredient + '</p>';
-  recipeHtml += '<p><strong>Category: </strong>' + this.category.name + '</p>';
+  //let rcp_ing = this.recipe_ingredients;
+//
+  //function findKeyIngredient(rcp_ing) {
+  //  var key_ing = "";
+  //  rcp_ing.forEach(function(ingredient) {
+  //    if (ingredient.key_ingredient === true) {
+  //      key_ing += ingredient.ingredient.name;
+  //    }
+  //  });
+  //  return key_ing;
+  //}
+  //var key_ingredient = findKeyIngredient(rcp_ing);
+//
+  //recipeHtml += '<p><strong>Key Ingredient: </strong>' + key_ingredient + '</p>';
+  //recipeHtml += '<p><strong>Category: </strong>' + this.category.name + '</p>';
 
   return recipeHtml;
 };
