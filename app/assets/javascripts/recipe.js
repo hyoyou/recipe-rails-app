@@ -77,11 +77,10 @@ function submitComment() {
       url: this.action,
       data: $(this).serialize(),
       success: function(response){
-        //console.log(response);
-        //alert('Thank you for your comment!');
+        alert('Thank you for your comment!');
         $("#comment_body").val("");
         $("div.comments ol").append(`<li>` + response + `</li>`);
-        $(".submit_comment").val("Thanks for your comment!");
+        $("#new_comment").remove();
       },
       error: function (response) {
         console.log(response);
