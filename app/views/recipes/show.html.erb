@@ -8,11 +8,11 @@
   <%= rate_recipe(@recipe) %>
 <% end %><br><br>
 
+<strong>Category:</strong> <%= @recipe.category.name %><br><br>
+
 <p><%= @recipe.description %></p>
 
-Category: <%= @recipe.category.name %><br><br>
-
-Ingredients:
+<strong>Ingredients:</strong>
 <table>
   <tr>
     <th>Name</th>
@@ -29,6 +29,7 @@ Ingredients:
   <% end %>
 </table><br>
 
+<strong>Comments:</strong>
 <%= form_for([@recipe, @comment]) do |f| %>
   <%= f.text_area :body %>
   <p><%= f.submit "Submit Comment" %></p>
