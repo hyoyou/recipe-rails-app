@@ -4,13 +4,14 @@ $(document).ready(function() {
 });
 
 function attachEventListeners() {
-  $(document).on('click', '.all-recipes', function(e) {
-  //$('.all-recipes').on('click', function(e) {
+  //$(document).on('click', '.all-recipes', function(e) {
+  $('.all-recipes').on('click', function(e) {
     e.preventDefault();
     history.pushState(null, null, '/recipes');
     $.get('/recipes.json', function(data) {
 
-      $('#recipes-container').html('');
+      //$('#recipes-container').html('');
+      $('#recipes-container').html('<h1>Recipe Cards</h1>');
       data.forEach(function(recipe) {
 
         var newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category, recipe.image);
