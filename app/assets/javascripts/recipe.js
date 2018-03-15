@@ -38,7 +38,7 @@ function attachEventListeners() {
   $(document).on('click', '.next-recipe', function(e) {
     e.preventDefault();
     let id = parseInt(this.attributes["data-id"].value);
-    history.pushState(null, null, `/recipes/${id + 1}/next`);
+    history.pushState(null, null, `/recipes/${id}`);
     $.get(`/recipes/${id}/next`, function(recipe){
 
       $('#recipes-container').html('');
