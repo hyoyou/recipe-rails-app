@@ -112,7 +112,7 @@ Recipe.prototype.formatShow = function() {
   recipeHtml += `<button data-id=${this.id} class="next-recipe">Next Recipe</button>`;
 
   recipeHtml += `<h1>` + this.name + `</h1>`;
-  recipeHtml += `<img src="` + this.image + `">`;
+  recipeHtml += `<img src="` + this.image + `" style="float: left; width:250px; height:200px; padding: 0px 20px 0px 10px;">`;
   recipeHtml += `<p>` + this.description + `</p>`;
   recipeHtml += `<p><strong>Category: </strong>` + this.category.name + `</p>`;
 
