@@ -4,7 +4,8 @@ $(document).ready(function() {
 });
 
 function attachEventListeners() {
-  $('.all-recipes').on('click', function(e) {
+  $(document).on('click', '.all-recipes', function(e) {
+  //$('.all-recipes').on('click', function(e) {
     e.preventDefault();
     history.pushState(null, null, '/recipes');
     $.get('/recipes.json', function(data) {
@@ -84,7 +85,7 @@ function Recipe(id, name, description, recipe_ingredients, category, image, comm
 Recipe.prototype.formatIndex = function() {
   let recipeHtml = '';
 
-  recipeHtml += `<div class="column"><h3><a href=/recipes/${this.id} + data-id=${this.id} + class=show_recipe>` + this.name + `</a></h3></div>`;
+  recipeHtml += `<h3><a href=/recipes/${this.id} + data-id=${this.id} + class=show_recipe>` + this.name + `</a></h3>`;
 
   //move out to separate function?
   //let rcp_ing = this.recipe_ingredients;
