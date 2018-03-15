@@ -1,6 +1,6 @@
 <h1><%= @recipe.name %></h1>
 
-<%= link_to image_tag(@recipe.image.url(:large), style:"width: 350px;", class: "img-center"), @recipe.image.url %><br>
+<%= link_to image_tag(@recipe.image.url(:original), style:"width: 350px;", class: "img-center"), @recipe.image.url %><br>
 
 <%= link_to "Average Rating: ", recipe_ratings_path(@recipe) %><%= ratings_average(@recipe) %><br>
 
