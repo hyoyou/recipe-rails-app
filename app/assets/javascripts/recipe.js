@@ -78,7 +78,6 @@ function submitComment() {
       url: this.action,
       data: $(this).serialize(),
       success: function(response){
-        alert('Thank you for your comment!');
         $("#comment_body").val("");
         $("div.comments ol").append(`<li>` + response + `</li>`);
         $("#new_comment").remove();
