@@ -1,6 +1,14 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy, :next]
 
+  def home
+    if current_user
+      redirect_to recipes_path
+    else
+      render :home
+    end
+  end
+
   def index
     if params[:ingredient_id]
       recipe_ingredients_array = RecipeIngredient.where(ingredient_id: params[:ingredient_id]).to_a
