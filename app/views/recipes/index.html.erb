@@ -2,8 +2,6 @@
 
 <h2><%= link_to "View by Category", categories_path %></h2>
 
-<%= paginate @recipes %><br>
-
 <div class="container">
   <div class="row">
     <% @recipes.each do |recipe| %>

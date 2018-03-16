@@ -11,8 +11,7 @@ class RecipesController < ApplicationController
       end
       @recipes
     else
-      #@recipes = Recipe.all
-      @recipes = Recipe.order(created_at: :desc).page(params[:page])
+      @recipes = Recipe.all
       respond_to do |f|
         f.html
         f.json { render json: @recipes }
