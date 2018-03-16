@@ -1,6 +1,8 @@
 <h1>Recipes</h1>
 
-<%= link_to "View by Category", categories_path %>
+<h2><%= link_to "View by Category", categories_path %></h2>
+
+<%= paginate @recipes %><br>
 
 <div class="container">
   <div class="row">

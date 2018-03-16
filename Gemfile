@@ -40,6 +40,7 @@ gem 'dotenv-rails'
 gem 'bootstrap-sass', '3.3.6'
 gem "paperclip", "~> 5.2.0"
 gem 'pry'
+gem 'kaminari'
 
 # jQuery project
 gem 'active_model_serializers'
