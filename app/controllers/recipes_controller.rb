@@ -20,7 +20,6 @@ class RecipesController < ApplicationController
   end
 
   def show
-    #@ingredients = @recipe.ingredients.all
     @comments = @recipe.comments
     @comment = @recipe.comments.build
     respond_to do |f|

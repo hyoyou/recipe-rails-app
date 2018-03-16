@@ -15,7 +15,6 @@ class Recipe < ApplicationRecord
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   def next
-    #binding.pry
     recipe = self.class.where("id > ?", id).first
     recipe ? recipe : Recipe.first
   end

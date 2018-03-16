@@ -1,52 +1,69 @@
 $(document).ready(function() {
-  attachEventListeners();
+  bindClickHandlerIndex();
+  bindClickHandlerShow();
+  bindClickHandlerNext();
   submitComment();
 });
 
-function attachEventListeners() {
-  //$(document).on('click', '.all-recipes', function(e) {
+// Attach Click Event Handlers
+function bindClickHandlerIndex() {
   $('.all-recipes').on('click', function(e) {
     e.preventDefault();
-    history.pushState(null, null, '/recipes');
-    $.get('/recipes.json', function(data) {
 
-      //$('#recipes-container').html('');
+    history.pushState(null, null, '/recipes');
+
+    $.get('/recipes.json', function(data) {
+      // Clear out the container
+      $('#recipes-container').html('');
       $('#recipes-container').html('<h1>Recipe Cards</h1>');
       data.forEach(function(recipe) {
-
+        // Create recipe object
         var newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category, recipe.image);
+        // Apply prototype method
         var formattedIndex = newRecipe.formatIndex();
-
+        // Append to the DOM
         $('#recipes-container').append(formattedIndex);
       });
     });
   });
+}
 
-  // attach event listener to a parent to allow any current and future show_recipe classes attach
+function bindClickHandlerShow() {
+  // Attach event listener to a parent to allow any current and future show_recipe classes to attach
   $(document).on('click', '.show_recipe', function(e) {
     e.preventDefault();
+
     let id = this.attributes["data-id"].value;
     history.pushState(null, null, `/recipes/${id}`);
-    $.get(`/recipes/${id}.json`, function(recipe){
-      $('#recipes-container').html('');
-      let newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category, recipe.image, recipe.comments);
-      let formattedShow = newRecipe.formatShow();
 
+    $.get(`/recipes/${id}.json`, function(recipe){
+      // Clear out the container
+      $('#recipes-container').html('');
+      // Create recipe object
+      let newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category, recipe.image, recipe.comments);
+      // Apply prototype method
+      let formattedShow = newRecipe.formatShow();
+      // Append to the DOM
       $('#recipes-container').append(formattedShow);
     });
   });
+}
 
-
+function bindClickHandlerNext() {
   $(document).on('click', '.next-recipe', function(e) {
     e.preventDefault();
+
     let id = parseInt(this.attributes["data-id"].value);
     history.pushState(null, null, `/recipes/${id}`);
+
     $.get(`/recipes/${id}/next`, function(recipe){
-
+      // Clear out the container
       $('#recipes-container').html('');
+      // Create recipe object
       let newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category, recipe.image, recipe.comments);
+      // Apply prototype method
       let formattedShow = newRecipe.formatShow();
-
+      // Append to the DOM
       $('#recipes-container').append(formattedShow);
     });
   });
@@ -73,6 +90,7 @@ function submitComment() {
   });
 }
 
+// Object Constructor Function
 function Recipe(id, name, description, recipe_ingredients, category, image, comments) {
   this.id = id;
   this.name = name;
@@ -83,34 +101,18 @@ function Recipe(id, name, description, recipe_ingredients, category, image, comm
   this.comments = comments;
 }
 
+// Prototype Methods
 Recipe.prototype.formatIndex = function() {
   let recipeHtml = '';
 
   recipeHtml += `<h3><a href=/recipes/${this.id} + data-id=${this.id} + class=show_recipe>` + this.name + `</a></h3>`;
 
-  //move out to separate function?
-  //let rcp_ing = this.recipe_ingredients;
-//
-  //function findKeyIngredient(rcp_ing) {
-  //  var key_ing = "";
-  //  rcp_ing.forEach(function(ingredient) {
-  //    if (ingredient.key_ingredient === true) {
-  //      key_ing += ingredient.ingredient.name;
-  //    }
-  //  });
-  //  return key_ing;
-  //}
-  //var key_ingredient = findKeyIngredient(rcp_ing);
-//
-  //recipeHtml += '<p><strong>Key Ingredient: </strong>' + key_ingredient + '</p>';
-  //recipeHtml += '<p><strong>Category: </strong>' + this.category.name + '</p>';
-
   return recipeHtml;
 };
 
-
 Recipe.prototype.formatShow = function() {
   var recipeHtml = '';
+
   recipeHtml += `<button data-id=${this.id} class="next-recipe">Next Recipe</button>`;
 
   recipeHtml += `<h1>` + this.name + `</h1>`;
@@ -125,5 +127,6 @@ Recipe.prototype.formatShow = function() {
     recipeHtml += `<td>${rIngredients[i].quantity}</td></tr>`;
   }
   recipeHtml += `</table>`;
+
   return recipeHtml;
 };
