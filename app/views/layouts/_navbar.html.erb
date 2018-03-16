@@ -1,11 +1,17 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
+
     <div class="nav navbar-nav navbar-left">
       <%= link_to "Recipes", recipes_path %>
       <div class="nav space">
         <%= link_to "Quick View Recipe Cards", recipes_path, class: "all-recipes" %>
       </div>
     </div>
+
+    <div class="navbar-brand">
+      <%= link_to "Do Good Do Eat", root_path %>
+    </div>
+
     <div class="nav navbar-nav navbar-right">
       <% if current_user %>
         Currently logged in as: <%= current_user.email %>
@@ -15,5 +21,6 @@
         <%= link_to "Sign Up", new_user_registration_path %>
       <% end %>
     </div>
+
   </div>
 </nav>

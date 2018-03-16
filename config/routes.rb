@@ -28,5 +28,6 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'callbacks' }
 
-  root 'recipes#index'
+  root 'recipes#landing'
+  
 end

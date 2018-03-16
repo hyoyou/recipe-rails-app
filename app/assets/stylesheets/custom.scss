@@ -5,6 +5,10 @@
 
 body {
   padding: 50px;
+  background-image: url("wood-texture-dark-1599x1200.jpg");
+  background-color: #1a1a1a;
+  opacity: 0.9;
+  font-family: 'Raleway', sans-serif;
 }
 
 section {
@@ -30,6 +34,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
+  font-family: 'Fjalla One', sans-serif;
   font-size: 3em;
   letter-spacing: -2px;
   margin-bottom: 30px;
@@ -37,12 +42,13 @@ h1 {
 }
 
 h2 {
-  font-size: 1.2em;
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 2em;
   letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: #777;
+  color: #fff;
 }
 
 p {
@@ -56,8 +62,25 @@ p {
   height: 150px;
 }
 
-.nav {
-  padding: 15px 10px;
+.navbar-default {
+  background-color: #0c0b05;
+  opacity: 0.8;
+  font-family: 'Fjalla One', sans-serif;
+  color: #ffebcc;
+  border: none;
+  padding: 15px 70px;
+}
+
+.navbar-nav > a, .nav.space > a, .navbar-brand > a {
+  color: #ff9900;
+}
+
+.navbar-brand {
+  transform: translateX(-50%);
+  font-size: 60px;
+  font-family: 'Lily Script One', cursive;
+  left: 50%;
+  position: absolute;
 }
 
 .nav.space{
@@ -70,13 +93,49 @@ p {
 }
 
 #recipes-container {
-  border: 3px solid black;
-  border-radius: 5px;
+  display: block;
+  margin: 0 auto;
+  border: 3px solid #0c0b05;
+  border-radius: 10px;
   padding: 10px;
+  background-color: #0c0b05;
+  opacity: 0.9;
 }
 
 .img-center {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.root-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  opacity: 0.75;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.centered > a {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-default {
+  color: #fff;
+  background-color: #ff9900;
+  font-size: 20px;
+  height:40px;
+  width:200px
 }
