@@ -32,7 +32,7 @@
 <strong>Comments:</strong>
 <%= form_for([@recipe, @comment]) do |f| %>
   <%= f.text_area :body %>
-  <p><%= f.submit "Submit Comment" %></p>
+  <p><%= f.submit "Submit Comment", :class => 'btn-submit' %></p>
 <% end %>
 
 <div class="comments">

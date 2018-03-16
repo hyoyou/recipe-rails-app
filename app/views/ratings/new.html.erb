@@ -14,5 +14,5 @@
 <%= form_for [@recipe, @rating] do |f| %>
   <%= f.hidden_field :recipe_id, value: @recipe.id %>
   <%= f.text_field :rating, placeholder: "Please rate 1 - 5" %>
-  <%= f.submit "Submit Rating"%>
+  <%= f.submit "Submit Rating", :class => "btn-submit"%>
 <% end %>

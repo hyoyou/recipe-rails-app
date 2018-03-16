@@ -6,7 +6,6 @@
 body {
   padding: 50px;
   background-image: url("wood-texture-dark-1599x1200.jpg");
-  background-color: #1a1a1a;
   opacity: 0.9;
   font-family: 'Raleway', sans-serif;
 }
@@ -39,6 +38,7 @@ h1 {
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
+  color: #0c0b05;
 }
 
 h2 {
@@ -48,7 +48,7 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: #fff;
+  color: #0c0b05;
 }
 
 p {
@@ -56,10 +56,25 @@ p {
   line-height: 1.7em;
 }
 
+a {
+  color: #0c0b05;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.page.current {
+  color: #ff9900;
+}
+
+a:hover {
+  color: #ff9900;
+}
+
 .column {
   float: left;
   width: 33.33%;
   height: 150px;
+  color: #0c0b05;
 }
 
 .navbar-default {
@@ -95,11 +110,11 @@ p {
 #recipes-container {
   display: block;
   margin: 0 auto;
-  border: 3px solid #0c0b05;
   border-radius: 10px;
-  padding: 10px;
-  background-color: #0c0b05;
-  opacity: 0.9;
+  padding: 30px;
+  background-color: white;
+  opacity: 0.8;
+  color: #0c0b05;
 }
 
 .img-center {
@@ -123,7 +138,6 @@ p {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
 }
 
 .centered > a {
@@ -138,4 +152,12 @@ p {
   font-size: 20px;
   height:40px;
   width:200px
+}
+
+.btn-submit, .next-recipe {
+  color: #0c0b05;
+  background-color: #ff9900;
+  font-size: 15px;
+  height:25px;
+  width:180px
 }
