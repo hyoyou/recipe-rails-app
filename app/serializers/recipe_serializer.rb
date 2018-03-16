@@ -4,4 +4,5 @@ class RecipeSerializer < ActiveModel::Serializer
   has_many :recipe_ingredients
   belongs_to :category
   has_many :ratings
+  has_many :comments
 end
