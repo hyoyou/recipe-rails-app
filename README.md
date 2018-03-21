@@ -1,7 +1,7 @@
-# Recipe Rails Application
+# Recipe Rails/JavaScript Application
 
-This is a Rails Application that I created for my Rails Final Project at Learn//Flatiron School. <hr />
-It is a simple recipe management application using Ruby on Rails. Users can view recipes on the homepage or they can filter it by category. Sometimes when we follow recipes, we end up buying some ingredient specifically for the purpose of using it for this one recipe and don't know what to do with the leftovers. I wanted to try eliminating this problem by adding a key ingredient attribute, where each recipe contains at least one key ingredient, the highlight of the recipe. On each recipe page, I give users to search for other recipes using the same key ingredient. Users who are signed up and signed in are also given the option to add a new recipe as well as give ratings for other recipes.
+This is a Rails Application with jQuery Front End that I created for my JavaScript Final Project at Learn//Flatiron School. <hr />
+It is a simple recipe management application using Ruby on Rails for back-end and jQuery for front-end. Users can view recipes on the homepage or they can filter it by category. Sometimes when we follow recipes, we end up buying some ingredient specifically for the purpose of using it for this one recipe and don't know what to do with the leftovers. I wanted to try eliminating this problem by adding a key ingredient attribute, where each recipe contains at least one key ingredient, the highlight of the recipe. On each recipe page, I give users to search for other recipes using the same key ingredient. Users who are signed up and signed in are also given the option to add a new recipe as well as give ratings for other recipes. Quick view recipes eliminate ratings and comments to show only ingredients and directions. These pages are rendered using Ajax.
 
 ## Usage
 
