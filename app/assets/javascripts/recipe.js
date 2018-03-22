@@ -2,6 +2,7 @@ $(document).ready(function() {
   bindClickHandlerIndex();
   bindClickHandlerShow();
   bindClickHandlerNext();
+  bindClickHandlerSort();
   submitComment();
 });
 
@@ -15,12 +16,12 @@ function bindClickHandlerIndex() {
     $.get('/recipes.json', function(data) {
       // Clear out the container
       $('#recipes-container').html('');
-      $('#recipes-container').html('<h1>Recipe Cards</h1>');
+      $('#recipes-container').html('<h1>Recipe Cards</h1><button class="sort-recipe">Sort Recipe</button>`;');
       data.forEach(function(recipe) {
         // Create recipe object
-        var newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category, recipe.image);
+        const newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category, recipe.image);
         // Apply prototype method
-        var formattedIndex = newRecipe.formatIndex();
+        const formattedIndex = newRecipe.formatIndex();
         // Append to the DOM
         $('#recipes-container').append(formattedIndex);
       });
@@ -69,6 +70,28 @@ function bindClickHandlerNext() {
   });
 }
 
+function bindClickHandlerSort() {
+  $(document).on('click', '.sort-recipe', function(e) {
+    e.preventDefault();
+
+    $.get(`/recipes.json`, function(recipe){
+      $('#recipes-container').html('');
+      $('#recipes-container').html('<h1>Recipes Sorted in Order of Descending Ingredients</h1>');
+      let newRecipes = recipe.sort(function(a, b) {
+        return b.recipe_ingredients.length - a.recipe_ingredients.length;
+      });
+      newRecipes.forEach(function(recipe) {
+        // Create recipe object
+        const newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category, recipe.image);
+        // Apply prototype method
+        const formattedIndex = newRecipe.formatIndex();
+        // Append to the DOM
+        $('#recipes-container').append(formattedIndex);
+      });
+    });
+  });
+}
+
 function submitComment() {
   $("#new_comment").on("submit", function(e) {
     e.preventDefault();
@@ -90,11 +113,11 @@ function submitComment() {
 }
 
 // Object Constructor Function
-function Recipe(id, name, description, recipe_ingredients, category, image, comments) {
+function Recipe(id, name, description, recipeIngredients, category, image, comments) {
   this.id = id;
   this.name = name;
   this.description = description;
-  this.recipe_ingredients = recipe_ingredients;
+  this.recipeIngredients = recipeIngredients;
   this.category = category;
   this.image = image;
   this.comments = comments;
@@ -120,7 +143,7 @@ Recipe.prototype.formatShow = function() {
   recipeHtml += `<p><strong>Category: </strong>` + this.category.name + `</p>`;
 
   recipeHtml += `<table><tr><th>Name</th><th>Quantity</th>`;
-  var rIngredients = this.recipe_ingredients;
+  var rIngredients = this.recipeIngredients;
   for (var i=0; i < rIngredients.length; i++) {
     recipeHtml += `<tr><td>${rIngredients[i].ingredient.name}</td>`;
     recipeHtml += `<td>${rIngredients[i].quantity}</td></tr>`;
