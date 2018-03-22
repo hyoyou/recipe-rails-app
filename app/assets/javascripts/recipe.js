@@ -16,7 +16,7 @@ function bindClickHandlerIndex() {
     $.get('/recipes.json', function(data) {
       // Clear out the container
       $('#recipes-container').html('');
-      $('#recipes-container').html('<h1>Recipe Cards</h1><button class="sort-recipe">Sort Recipe</button>`;');
+      $('#recipes-container').html('<h1>Recipe Cards</h1>');
       data.forEach(function(recipe) {
         // Create recipe object
         const newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category, recipe.image);
@@ -66,28 +66,6 @@ function bindClickHandlerNext() {
       let formattedShow = newRecipe.formatShow();
       // Append to the DOM
       $('#recipes-container').append(formattedShow);
-    });
-  });
-}
-
-function bindClickHandlerSort() {
-  $(document).on('click', '.sort-recipe', function(e) {
-    e.preventDefault();
-
-    $.get(`/recipes.json`, function(recipe){
-      $('#recipes-container').html('');
-      $('#recipes-container').html('<h1>Recipes Sorted in Order of Descending Ingredients</h1>');
-      let newRecipes = recipe.sort(function(a, b) {
-        return b.recipe_ingredients.length - a.recipe_ingredients.length;
-      });
-      newRecipes.forEach(function(recipe) {
-        // Create recipe object
-        const newRecipe = new Recipe(recipe.id, recipe.name, recipe.description, recipe.recipe_ingredients, recipe.category, recipe.image);
-        // Apply prototype method
-        const formattedIndex = newRecipe.formatIndex();
-        // Append to the DOM
-        $('#recipes-container').append(formattedIndex);
-      });
     });
   });
 }
