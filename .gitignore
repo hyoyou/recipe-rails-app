@@ -23,4 +23,5 @@
 .byebug_history
 .env
 .jshintrc
+.DS_Store
 NOTES.md

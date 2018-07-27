@@ -5,8 +5,6 @@
 
 body {
   padding: 50px;
-  background-image: url("wood-texture-dark-1599x1200.jpg");
-  opacity: 0.9;
   font-family: 'Raleway', sans-serif;
 }
 
@@ -32,23 +30,23 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
 
-h1 {
-  font-family: 'Fjalla One', sans-serif;
-  font-size: 3em;
-  letter-spacing: -2px;
+h2 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 3rem;
+  letter-spacing: 2px;
   margin-bottom: 30px;
   text-align: center;
-  color: #0c0b05;
+  color: #262730;
 }
 
-h2 {
-  font-family: 'Fjalla One', sans-serif;
-  font-size: 2em;
+h3 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 2.5rem;
   letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: #0c0b05;
+  color: #262730;
 }
 
 p {
@@ -77,23 +75,35 @@ a:hover {
   color: #0c0b05;
 }
 
-.navbar-default {
-  background-color: #0c0b05;
-  opacity: 0.8;
-  font-family: 'Fjalla One', sans-serif;
+.navbar {
+  height: 75px;
+  line-height: 75px;
+  background-color: #262730;
+  font-family: 'Poppins', sans-serif;
   color: #ffebcc;
   border: none;
   padding: 15px 70px;
+  vertical-align: middle;
+  border-bottom: 3px solid #99621E;
 }
 
-.navbar-nav > a, .nav.space > a, .navbar-brand > a {
+.navbar-nav > a, .navbar-brand > a {
   color: #ff9900;
+  text-decoration: none;
+}
+
+.navbar-nav > a {
+  padding-right: 45px;
+}
+
+.nav a:hover {
+  text-decoration: underline;
 }
 
 .navbar-brand {
   transform: translateX(-50%);
   font-size: 60px;
-  font-family: 'Lily Script One', cursive;
+  font-family: 'Poor Story', cursive;
   left: 50%;
   position: absolute;
 }
@@ -103,18 +113,15 @@ a:hover {
   padding: 0px 10px;
 }
 
-.nav a:hover {
-  font-weight: bold;
-}
-
 #recipes-container {
   display: block;
   margin: 0 auto;
   border-radius: 10px;
   padding: 30px;
   background-color: white;
-  opacity: 0.8;
+  opacity: 0.9;
   color: #0c0b05;
+  min-height: 500px;
 }
 
 .img-center {
@@ -124,20 +131,20 @@ a:hover {
 }
 
 .root-image {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  height: 100%;
-  width: 100%;
+  float: left;
+  width: 50%;
   object-fit: contain;
   opacity: 0.75;
 }
 
-.centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.right-align{
+  float: right;
+  width: 50%;
+}
+
+.signup {
+  width: 100%;
+  margin-left: 35%;
 }
 
 .centered > a {
@@ -149,15 +156,16 @@ a:hover {
 .btn-default {
   color: #fff;
   background-color: #ff9900;
+  text-decoration: none;
   font-size: 20px;
-  height:40px;
-  width:200px
+  height: 40px;
+  width: 30%;
 }
 
 .btn-submit, .next-recipe {
   color: #0c0b05;
   background-color: #ff9900;
-  font-size: 15px;
-  height:25px;
-  width:180px
+  font-size: 1.5rem;
+  height: 25px;
+  width: 180px;
 }
