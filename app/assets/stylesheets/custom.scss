@@ -4,7 +4,7 @@
 /* universal */
 
 body {
-  padding: 50px;
+  padding: 0 50px;
 }
 
 section {
@@ -72,6 +72,15 @@ a:hover {
   width: 33.33%;
   height: 150px;
   color: #0c0b05;
+  padding-bottom: 15%;
+}
+
+@media screen and (max-width: 1040px) {
+  .column {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center
+  }
 }
 
 .navbar {
@@ -84,6 +93,32 @@ a:hover {
   padding: 15px 70px;
   vertical-align: middle;
   border-bottom: 3px solid #99621E;
+}
+
+@media screen and (max-width: 1040px) {
+  .navbar {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center
+  }
+  
+  .navbar-nav > a, .navbar-brand > a {
+    font-size: 90%;
+  }
+
+  .user-info {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .navbar-brand > a {
+    font-size: 70%;
+  }
+
+  .navbar-left, .navbar-right {
+    display: none;
+  }
 }
 
 .navbar-nav > a, .navbar-brand > a {
@@ -105,9 +140,10 @@ a:hover {
   font-family: 'Poor Story', cursive;
   left: 50%;
   position: absolute;
+  margin-left: 0;
 }
 
-.nav.space{
+.nav.space {
   display: inline-block;
   padding: 0px 10px;
 }
@@ -130,6 +166,7 @@ a:hover {
 }
 
 .root-image {
+  padding-top: 5%;
   float: left;
   width: 50%;
   object-fit: contain;
@@ -137,8 +174,21 @@ a:hover {
 }
 
 .right-align{
+  padding-top: 9%;
   float: right;
   width: 50%;
+}
+
+@media screen and (max-width: 920px) {
+  .root-image {
+    width: 100%;
+    object-fit: contain;
+    opacity: 0.75;
+  }
+  
+  .right-align{
+    width: 100%;
+  }
 }
 
 .signup {
@@ -156,7 +206,7 @@ a:hover {
   color: #fff;
   background-color: #ff9900;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 1.5rem;
   height: 40px;
   width: 30%;
 }
